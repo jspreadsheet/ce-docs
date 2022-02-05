@@ -1,0 +1,94 @@
+<div class="section">
+<div class="section-content">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<div class='breadcrumb'><a href='/jspreadsheet/v4/examples' title='Back to the examples section'>Back to Examples</a></div>
+
+<h1>Table overflow</h1>
+
+<p>Define width and height for your online javascript spreadsheet.</p>
+
+<div id="spreadsheet"></div>
+
+<h3>Source code</h3>
+
+<pre class="prettyprint linenums">
+&#60;html>
+&#60;script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js">&#60;/script>
+
+&#60;script src="https://bossanova.uk/jspreadsheet/v4/jexcel.js">&#60;/script>
+&#60;link rel="stylesheet" href="https://bossanova.uk/jspreadsheet/v4/jexcel.css" type="text/css" />
+&#60;script src="https://jsuites.net/v4/jsuites.js">&#60;/script>
+&#60;link rel="stylesheet" href="https://jsuites.net/v4/jsuites.css" type="text/css" />
+
+&#60;div id="spreadsheet">&#60;/div>
+
+&#60;script>
+jspreadsheet(document.getElementById('spreadsheet'), {
+        minDimensions: [10, 20],
+        defaultColWidth: 100,
+        tableOverflow: true,
+        tableWidth: "600px",
+        columns: [
+          {
+            type: "dropdown",
+            source: [{ id: 1, name: "yes" }, { id: 2, name: "no" }]
+          },
+          {
+            type: "dropdown",
+            source: [{ id: 1, name: "yes" }, { id: 2, name: "no" }]
+          },
+          {
+            type: "dropdown",
+            source: [{ id: 1, name: "yes" }, { id: 2, name: "no" }]
+          },
+          {
+            type: "dropdown",
+            source: [{ id: 1, name: "yes" }, { id: 2, name: "no" }]
+          },
+          {
+            type: "dropdown",
+            source: [{ id: 1, name: "yes" }, { id: 2, name: "no" }]
+          }
+        ]
+    });
+&#60;/script>
+&#60;/html>
+</pre>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    jspreadsheet(document.getElementById('spreadsheet'), {
+        minDimensions: [10, 20],
+        defaultColWidth: 100,
+        tableOverflow: true,
+        tableWidth: "600px",
+        columns: [
+          {
+            type: "dropdown",
+            source: [{ id: 1, name: "yes" }, { id: 2, name: "no" }]
+          },
+          {
+            type: "dropdown",
+            source: [{ id: 1, name: "yes" }, { id: 2, name: "no" }]
+          },
+          {
+            type: "dropdown",
+            source: [{ id: 1, name: "yes" }, { id: 2, name: "no" }]
+          },
+          {
+            type: "dropdown",
+            source: [{ id: 1, name: "yes" }, { id: 2, name: "no" }]
+          },
+          {
+            type: "dropdown",
+            source: [{ id: 1, name: "yes" }, { id: 2, name: "no" }]
+          }
+        ]
+    });
+});
+</script>
+
+</div>
+</div>

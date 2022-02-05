@@ -1,0 +1,314 @@
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.13.5/jszip.js"></script>
+<script type="text/javascript" src="/jspreadsheet/v3/xlsx.js"></script>
+
+<div class="section">
+<div class="section-content">
+
+<div class='breadcrumb'><a href='/jspreadsheet/v4/examples' title='Back to the examples section'>Back to Examples</a></div>
+
+<h1>Create a javascript spreadsheet</h1>
+
+<p>There are a few different ways to load data to your javavascript spreadsheet shown in the next four examples below</p>
+
+<br>
+
+<div class="section-divisor">
+    <div class="section-number">1</div> <div class="section-title"><h2>Based on a external CSV file</h2></div>
+</div>
+
+<p>The example below helps you to create a javascript spreadsheet table based on a remote CSV file, including the headers.</p>
+
+<div id="spreadsheet1"></div>
+
+<p><button id='download' class='jbutton dark'>Download Spreadsheet</button></p>
+
+<br><br>
+
+<h3>Source code</h3>
+
+<pre class="prettyprint linenums">
+&#60;html>
+&#60;script src="https://bossanova.uk/jspreadsheet/v4/jexcel.js">&#60;/script>
+&#60;link rel="stylesheet" href="https://bossanova.uk/jspreadsheet/v4/jexcel.css" type="text/css" />
+&#60;script src="https://jsuites.net/v4/jsuites.js">&#60;/script>
+&#60;link rel="stylesheet" href="https://jsuites.net/v4/jsuites.css" type="text/css" />
+
+&#60;div id="spreadsheet1">&#60;/div>
+
+&#60;p>&#60;button id='download'>Export my spreadsheet as CSV&#60;/button>&#60;/p>
+
+&#60;script>
+var mySpreadsheet = jspreadsheet(document.getElementById('spreadsheet1'), {
+    csv:'/jspreadsheet/arts.csv',
+    csvHeaders:true,
+    tableOverflow:true,
+    columns: [
+        { type:'text', width:300 },
+        { type:'text', width:80 },
+        { type:'dropdown', width:120, source:['England','Wales','Northern Ireland','Scotland'] },
+        { type:'text', width:120 },
+        { type:'text', width:120 },
+     ]
+});
+
+document.getElementById('download').onclick = function () {
+    mySpreadsheet.download();
+}
+&#60;/script>
+&#60;/html>
+</pre>
+
+<br><br>
+
+<div class="section-divisor">
+    <div class="section-number">2</div> <div class="section-title"><h2>Based on an external JSON file</h2></div>
+</div>
+
+<p>In a similar way, you can create a table based on an external JSON file format by using the <i>url: directive</i> as below.
+
+<div id="spreadsheet2"></div>
+
+<br><br>
+
+<h3>Source code</h3>
+
+<pre class="prettyprint linenums">
+&#60;html>
+&#60;script src="https://bossanova.uk/jspreadsheet/v4/jexcel.js">&#60;/script>
+&#60;link rel="stylesheet" href="https://bossanova.uk/jspreadsheet/v4/jexcel.css" type="text/css" />
+&#60;script src="https://jsuites.net/v4/jsuites.js">&#60;/script>
+&#60;link rel="stylesheet" href="https://jsuites.net/v4/jsuites.css" type="text/css" />
+
+&#60;div id="spreadsheet2">&#60;/div>
+
+&#60;script>
+jspreadsheet(document.getElementById('spreadsheet2'), {
+    url: '/v4/test.json',
+    columns: [
+        { type:'text', width:300 },
+        { type:'text', width:100 },
+     ]
+});
+&#60;/script>
+&#60;/html>
+</pre>
+
+
+<br><br><br>
+
+<div class="section-divisor">
+    <div class="section-number">3</div> <div class="section-title"><h2>Based on an JSON object</h2></div>
+</div>
+
+<p>The data directiva can be used to define a JSON object. In this case you can define by the name directive the order of the columns.</p>
+
+<div id="spreadsheet3"></div>
+
+<br><br>
+
+<h3>Source code</h3>
+
+<pre class="prettyprint linenums">
+&#60;html>
+&#60;script src="https://bossanova.uk/jspreadsheet/v4/jexcel.js">&#60;/script>
+&#60;link rel="stylesheet" href="https://bossanova.uk/jspreadsheet/v4/jexcel.css" type="text/css" />
+&#60;script src="https://jsuites.net/v4/jsuites.js">&#60;/script>
+&#60;link rel="stylesheet" href="https://jsuites.net/v4/jsuites.css" type="text/css" />
+
+&#60;div id="spreadsheet3">&#60;/div>
+
+&#60;script>
+jspreadsheet(document.getElementById('spreadsheet3'), {
+    data:[
+        {
+            name:'Paulo',
+            id:'3',
+            age:'40',
+            gender:'Male'
+        },
+        {
+            name:'Cosme Sergio',
+            id:'4',
+            age:'48',
+            gender:'Male'
+        },
+        {
+            name:'Jorgina Santos',
+            id:'5',
+            age:'32',
+            gender:'Female'
+        },
+    ],
+    columns: [
+        {
+            type:'text',
+            width:'40',
+            name:'id',
+            title:'Id',
+        },
+        {
+            type:'text',
+            width:'200',
+            name:'name',
+            title:'Name',
+        },
+        {
+            type:'text',
+            width:'100',
+            name:'age',
+            title:'Age',
+        },
+        {
+            type:'hidden',
+            name:'gender'
+        },
+     ]
+});
+&#60;/script>
+&#60;/html>
+</pre>
+
+
+<br><br><br>
+
+<div class="section-divisor">
+    <div class="section-number">4</div> <div class="section-title"><h2>Importing from a XLSX file</h2></div>
+</div>
+
+<p>The following example imports the data from a XLSX file using a thirdy party library, slighly customized in order to improve the CSS parser.</p>
+
+<p style='font-size:0.9em;color:red'>IMPORTANT: This is an experimental implementation and there is no garantee your spreadsheet will be correctly parsed.</p>
+
+<br>
+
+<div id="spreadsheet4"></div>
+
+<br><br>
+
+<h3>Source code</h3>
+
+<pre class="prettyprint linenums">
+&#60;html>
+&#60;script src="https://bossanova.uk/jspreadsheet/v4/jexcel.js">&#60;/script>
+&#60;link rel="stylesheet" href="https://bossanova.uk/jspreadsheet/v4/jexcel.css" type="text/css" />
+&#60;script src="https://jsuites.net/v4/jsuites.js">&#60;/script>
+&#60;link rel="stylesheet" href="https://jsuites.net/v4/jsuites.css" type="text/css" />
+
+&#60;script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.13.5/jszip.js">&#60;/script>
+&#60;script src="https://bossanova.uk/jspreadsheet/v3/xlsx.js">&#60;/script>
+
+&#60;div id="spreadsheet4">&#60;/div>
+
+&#60;script>
+jexcel.fromSpreadsheet('https://bossanova.uk/jspreadsheet/v4/list.xlsx', function(result) {
+    if (! result.length) {
+        console.error('jspreadsheet: Something went wrong.');
+    } else {
+        if (result.length == 1) {
+            jspreadsheet(document.getElementById('spreadsheet4'), result[0]);
+        } else {
+            jexcel.createTabs(document.getElementById('spreadsheet4'), result);
+        }
+    }
+});
+&#60;/script>
+&#60;/html>
+</pre>
+
+<p><b>NOTE</b>: This example is based on a customized version of the free version of <a href='https://sheetjs.com/'>Sheetjs</a>. There is no garantee in the use of this library. Please consider purchase their professional version.</p>
+
+<br><br>
+
+<script>
+var spreadsheet = null;
+
+document.getElementById('download').onclick = function () {
+    spreadsheet.download();
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    spreadsheet = jspreadsheet(document.getElementById('spreadsheet1'), {
+        csv:'/jspreadsheet/arts.csv',
+        csvHeaders:true,
+        tableOverflow:true,
+        columns: [
+            { type:'text', width:300 },
+            { type:'text', width:80 },
+            { type:'dropdown', width:120, source:['England','Wales','Northern Ireland','Scotland'] },
+            { type:'text', width:120 },
+            { type:'text', width:120 },
+         ]
+    });
+
+    table2 = jspreadsheet(document.getElementById('spreadsheet2'), {
+        url:'/jspreadsheet/test.json',
+        columns: [
+            { type:'text', width:300 },
+            { type:'text', width:100 },
+         ]
+    });
+
+
+    table3 = jspreadsheet(document.getElementById('spreadsheet3'), {
+        data:[
+            {
+                name:'Paulo',
+                id:'3',
+                age:'40',
+                gender:'Male'
+            },
+            {
+                name:'Cosme Sergio',
+                id:'4',
+                age:'48',
+                gender:'Male'
+            },
+            {
+                name:'Jorgina Santos',
+                id:'5',
+                age:'32',
+                gender:'Female'
+            },
+        ],
+        columns: [
+            {
+                type:'text',
+                width:'40',
+                name:'id',
+                title:'Id',
+            },
+            {
+                type:'text',
+                width:'200',
+                name:'name',
+                title:'Name',
+            },
+            {
+                type:'text',
+                width:'100',
+                name:'age',
+                title:'Age',
+            },
+            {
+                type:'hidden',
+                name:'gender'
+            },
+         ]
+    });
+
+    jexcel.fromSpreadsheet('/jspreadsheet/list.xlsx', function(result) {
+        if (! result.length) {
+            console.error('jspreadsheet: Something went wrong.');
+        } else {
+            if (result.length == 1) {
+                jspreadsheet(document.getElementById('spreadsheet4'), result[0]);
+            } else {
+                jexcel.createTabs(document.getElementById('spreadsheet4'), result);
+            }
+        }
+    });
+});
+</script>
+
+</div>
+</div>

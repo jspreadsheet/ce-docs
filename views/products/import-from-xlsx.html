@@ -1,0 +1,194 @@
+<script src="https://www.paypal.com/sdk/js?client-id=<?=PAYPAL_CLIENT_ID?>&currency=GBP&disable-funding=credit,card,sofort"></script>
+
+<div class="section">
+<div class='section-label' style='background-color: #737373'>Products</div>
+<div class="section-content">
+
+
+<img src='img/spreadsheet-plugin-import.png' class='left mr1' style='width:80px;'>
+
+<div class='row'>
+<div class='column f4 mr2'>
+
+<h1>Import from XLSX</h1>
+
+The JSS parser is a premium extension to create a JSS spreadsheet from a XLSX file.<br><br> 
+
+
+</div><div class='column f1'>
+
+<div class='purchase'>
+<span><s>Regular price £ 180</s></span>
+<div class='purchase-price'>£ 90 <span class='small'>One-time fee</span></div>
+<div class='purchase-button'>
+    <div id="paypal-button-container"></div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+
+<h2>Author</h2>
+Jspreadsheet Pro Team.<br><br>
+
+<h2>License</h2>
+This plugin requires a license.<br><br>
+
+<h2>Installation</h2>
+Please choose one of the following options<br><br>
+
+<div class='tabs'>
+<div>
+    <div>Using CDN</div>
+    <div>Using NPM</div>
+</div>
+<div>
+<div>
+<pre class="prettyprint linenums">
+&#60;html>
+&#60;script src="https://jspreadsheet.com/v8/jspreadsheet.js">&#60;/script>
+&#60;script src="https://jsuites.net/v4/jsuites.js">&#60;/script>
+&#60;link rel="stylesheet" href="https://jspreadsheet.com/v8/jspreadsheet.css" type="text/css" />
+&#60;link rel="stylesheet" href="https://jsuites.net/v4/jsuites.css" type="text/css" />
+
+&#60;script src="https://cdn.jsdelivr.net/npm/jszip@3.6.0/dist/jszip.min.js">&#60;/script>
+&#60;script src="https://jspreadsheet.com/v8/plugins/parser.js">&#60;/script>
+
+&#60;div id="spreadsheet">&#60;/div>
+
+&#60;input type="file" name="file" id='file' onchange="load(event)" style='display:none'>
+
+&#60;input type='button' value='Load a XLSX file from my local computer'
+    onclick="document.getElementById('file').click()">
+
+&#60;script>
+// Set license
+jspreadsheet.license = 'your-license';
+
+// Set extensions
+jspreadsheet.setExtensions({ parser });
+
+// Create the spreadsheet from a local file
+var load = function(e) {
+    // Parse XLSX file and create a new spreadsheet
+    jspreadsheet.parser({
+        file: e.target.files[0],
+        onload: function(config) {
+            jspreadsheet(document.getElementById('spreadsheet'), config);
+        },
+    });
+}
+&#60;/script>
+&#60;/html>
+</pre>
+</div>
+<div>
+<pre class="prettyprint linenums">
+// Jspreadsheet Pro
+import jspreadsheet from 'jspreadsheet-pro';
+
+// Importer JSS Parser
+import parser from '@jspreadsheet/parser';
+
+// Add a valid license
+jspreadsheet.license = 'your-license';
+
+// Set extensions
+jspreadsheet.setExtensions({ parser });
+
+// Create the spreadsheet from a local file
+var load = function(e) {
+    // Parse XLSX file and create a new spreadsheet
+    jspreadsheet.parser({
+        file: e.target.files[0],
+        onload: function(config) {
+            jspreadsheet(document.getElementById('spreadsheet'), config);
+        },
+    });
+}
+</pre>
+</div>
+</div>
+</div>
+
+<br><br>
+
+<h2>Example</h2>
+
+Click the Import button below to import an XLSX from your local device and create a JSS spreadsheet.<br><br>
+
+<div id='spreadsheet'></div>
+
+<br><br>
+
+<input type="file" name="file" id='file' onchange="load(event)" style='display:none'>
+
+<input type='button' value='Load a XLSX file from my local computer' onclick="document.getElementById('file').click()" class="jbutton dark">
+
+
+</div>
+</div>
+
+<script>
+// Create the spreadsheet from a local file
+var load = function(e) {
+    // Parse XLSX file and create a new spreadsheet
+    jspreadsheet.parser({
+        file: e.target.files[0],
+        onload: function(config) {
+            jspreadsheet(document.getElementById('spreadsheet'), config);
+        },
+    });
+}
+
+paypal.Buttons({
+    style: {
+        shape: 'rect',
+        color: 'gold',
+        layout: 'vertical',
+        label: 'paypal',
+
+    },
+
+    createOrder: function(data, actions) {
+        return actions.order.create({
+            purchase_units: [{
+                "reference_id": "4",
+                "description": "JSS parser",
+                "amount": {
+                    "currency_code": "GBP",
+                    "value": 90
+                }
+            }],
+            application_context: {
+                shipping_preference: "NO_SHIPPING"
+            }
+        });
+    },
+
+    onApprove: function(data, actions) {
+        return actions.order.capture().then(function(details) {
+            jSuites.ajax({
+                url: '/products/order/' + details.id,
+                method: 'GET',
+                dataType: 'json',
+                success: function(result) {
+                    jSuites.notification(result);
+
+                    if (result.success) {
+                        setTimeout(function() {
+                            window.open('/me/profile', '_top');
+                        }, 3000);
+                    }
+                }
+            });
+        });
+    },
+
+    onError: function(err) {
+        console.log(err);
+    }
+}).render('#paypal-button-container');
+</script>

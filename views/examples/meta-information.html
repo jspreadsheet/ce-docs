@@ -1,0 +1,96 @@
+<div class="section">
+<div class="section-content">
+
+<div class='breadcrumb'><a href='/jspreadsheet/examples#more' alt='Back to the examples section'>Back to Examples</a></div>
+
+<h1>Meta information</h1>
+
+<p>This feature helps you keep import information about the cells hidden from users.</p>
+
+<div id="spreadsheet"></div>
+
+<script>
+var data = [
+    ['US', 'Apples', 'Yes', '2019-02-12'],
+    ['CA;US;UK', 'Carrots', 'Yes', '2019-03-01'],
+    ['CA;BR', 'Oranges', 'No', '2018-11-10'],
+    ['BR', 'Coconuts', 'Yes', '2019-01-12'],
+];
+
+document.addEventListener('DOMContentLoaded', function() {
+    table = jspreadsheet(document.getElementById('spreadsheet'), {
+        data:data,
+        columns: [
+            { type: 'dropdown', title: 'Product Origin', width: '300px', url: '/jspreadsheet/countries', autocomplete: true, multiple: true },
+            { type: 'text', title: 'Description', width: '200px' },
+            { type: 'dropdown', title: 'Stock', width: '100px', source: ['No','Yes'] },
+            { type: 'calendar', title: 'Best before', width: '100px' },
+        ],
+        meta:{
+            A1: { myMeta: 'this is just a test', otherMetaInformation: 'other test' },
+            A2: { info: 'test' }
+        }
+    });
+});
+</script>
+
+
+<p>You can define any meta information during the initialization or programatically after that thought getMeta or setMeta methods.</p>
+
+
+<button type="button" onclick="table.setMeta({ C1: { id:'1', y:'2019' }, C2: { id:'2' } });">Set meta data for multiple columns</button>
+<button type="button" onclick="table.setMeta('B2', 'myMetaData', prompt('myMetaData:'));">Set a meta information for B2</button>
+<button type="button" onclick="document.getElementById('console').value = JSON.stringify(table.getMeta('A1'));">Get the meta information for A1</button>
+<button type="button" onclick="document.getElementById('console').value  = JSON.stringify(table.getMeta());">Get all meta information</button>
+
+
+<br><br>
+
+<textarea id='console' style='width:100%;height:80px;'></textarea>
+
+<br><br>
+
+<h3>Source code</h3>
+
+<pre class="prettyprint linenums">
+&#60;html>
+&#60;script src="https://bossanova.uk/jspreadsheet/v4/jexcel.js">&#60;/script>
+&#60;script src="https://jsuites.net/v4/jsuites.js">&#60;/script>
+&#60;link rel="stylesheet" href="https://bossanova.uk/jspreadsheet/v4/jexcel.css" type="text/css" />
+&#60;link rel="stylesheet" href="https://jsuites.net/v4/jsuites.css" type="text/css" />
+
+&#60;div id="spreadsheet">&#60;/div>
+
+&#60;script>
+var data = [
+    ['US', 'Apples', 'Yes', '2019-02-12'],
+    ['CA;US;UK', 'Carrots', 'Yes', '2019-03-01'],
+    ['CA;BR', 'Oranges', 'No', '2018-11-10'],
+    ['BR', 'Coconuts', 'Yes', '2019-01-12'],
+];
+
+var table = jspreadsheet(document.getElementById('spreadsheet'), {
+    data:data,
+    columns: [
+        { type: 'dropdown', title: 'Product Origin', width: '300px', url: '/jspreadsheet/countries', autocomplete: true, multiple: true },
+        { type: 'text', title: 'Description', width: '200px' },
+        { type: 'dropdown', title: 'Stock', width: '100px', source: ['No','Yes'] },
+        { type: 'calendar', title: 'Best before', width: '100px' },
+    ],
+    meta:{
+        A1: { myMeta: 'this is just a test', otherMetaInformation: 'other test' },
+        A2: { info: 'test' }
+    }
+});
+&#60;/script>
+
+&#60;button type="button" onclick="table.setMeta({ C1: { id:'1', y:'2019' }, C2: { id:'2' } });">Set meta data for multiple columns&#60;/button>
+&#60;button type="button" onclick="table.setMeta('B2', 'myMetaData', prompt('myMetaData:'));">Set a meta information for B2&#60;/button>
+&#60;button type="button" onclick="document.getElementById('console').value = JSON.stringify(table.getMeta('A1'));">Get the meta information for A1&#60;/button>
+&#60;button type="button" onclick="document.getElementById('console').value  = JSON.stringify(table.getMeta());">Get all meta information&#60;/button>
+
+&#60;/html>
+</pre>
+
+</div>
+</div>

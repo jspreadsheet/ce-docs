@@ -1,0 +1,732 @@
+<div class="section">
+<div class="section-content">
+
+<div class='breadcrumb'><a href='/jspreadsheet/v4/docs' title='Back to the documentation section'>Back to Documentation</a></div>
+
+<h1>Jspreadsheet quick reference</h1>
+
+<br>
+
+<div class="section-divisor">
+    <div class="section-number">1</div> <div class="section-title"><h2>Methods</h2></div>
+</div>
+
+<table class='table'>
+<thead><tr><th>Method</th><th>Example</th></tr></thead>
+<tbody>
+<tr>
+    <td><b>getData:</b> Get the full or partial table data<br>@Param boolan onlyHighlighedCells - Get only highlighted cells</td>
+    <td>myTable.getData([bool]);</td>
+</tr>
+<tr>
+    <td><b>getJson:</b> Get the full or partial table data in JSON format<br>@Param boolan onlyHighlighedCells - Get only highlighted cells</td>
+    <td>myTable.getJson([bool]);</td>
+</tr>
+<tr>
+    <td><b>getRowData:</b> Get the data from one row by number<br>@Param integer rowNumber - Row number</td>
+    <td>myTable.getRowData([int]);</td>
+</tr>
+<tr>
+    <td><b>setRowData:</b> Set the data from one row by number<br>@Param integer rowNumber - Row number<br>@param array rowData - Row data</td>
+    <td>myTable.setRowData([int], [array]);</td>
+</tr>
+<tr>
+    <td><b>getColumnData:</b> Get the data from one column by number<br>@Param integer columnNumber - Column number</td>
+    <td>myTable.getColumnData([int]);</td>
+</tr>
+<tr>
+    <td><b>setColumnData:</b> Set the data from one column by number<br>@Param integer columnNumber - Column number<br>@param array colData - Column data</td>
+    <td>myTable.setColumnData([int], [array]);</td>
+</tr>
+<tr>
+    <td><b>setData:</b> Set the table data<br>@Param json newData - New json data, null will reload what is in memory.</td>
+    <td>myTable.setData([json]);</td>
+</tr>
+<tr>
+    <td><b>setMerge:</b> Merge cells<br>@Param string columnName - Column name, such as A1.<br>@Param integer colspan - Number of columns<br>@Param integer rowspan - Number of rows<br></td>
+    <td>myTable.setMerge([string], [int], [int]);</td>
+</tr>
+<tr>
+    <td><b>getMerge:</b> Get merged cells properties<br>@Param string columnName - Column name, such as A1.</td>
+    <td>myTable.getMerge([string]);</td>
+</tr>
+<tr>
+    <td><b>removeMerge:</b> Destroy merged by column name<br>@Param string columnName - Column name, such as A1.</td>
+    <td>myTable.removeMerge([string]);</td>
+</tr>
+<tr>
+    <td><b>destroyMerged:</b> Destroy all merged cells</td>
+    <td>myTable.destroyMerge();</td>
+</tr>
+<tr>
+    <td><b>getCell</b>: get current cell DOM<br>@Param string columnName - str compatible with excel, or as object.</td>
+    <td>myTable.getCell([string]);</td>
+</tr>
+<tr>
+    <td><b>getLabel</b>: get current cell DOM innerHTML<br>@Param string columnName - str compatible with excel, or as object.</td>
+    <td>myTable.getLabel([string]);</td>
+</tr>
+<tr>
+    <td><b>getValue:</b> get current cell value<br>@Param mixed cellIdent - str compatible with excel, or as object.</td>
+    <td>myTable.getValue([string]);</td>
+</tr>
+<tr>
+    <td><b>getValueFromCoords:</b> get value from coords<br>@Param integer x<br>@Param integer y<br></td>
+    <td>myTable.getValueFromCoords([integer], [integer]);</td>
+</tr>
+<tr>
+    <td><b>setValue:</b> change the cell value<br>@Param mixed cellIdent - str compatible with excel, or as object.<br>@Param string Value - new value for the cell<br>@Param bool force - update readonly columns</td>
+    <td>myTable.setValue([string], [string], [bool]);</td>
+</tr>
+<tr>
+    <td><b>setValueFromCoords:</b> get value from coords<br>@Param integer x<br>@Param integer y<br>@Param string Value - new value for the cell<br>@Param bool force - update readonly columns</td>
+    <td>myTable.getValueFromCoords([integer], [integer], [string], [bool]);</td>
+</tr>
+<tr>
+    <td><b>resetSelection:</b> Reset the table selection<br>@Param boolean executeBlur - execute the blur from the table<br></td>
+    <td>myTable.resetSelection([bool]);</td>
+</tr>
+<tr>
+    <td><b>updateSelection:</b> select cells<br>@Param object startCell - cell object<br>@Param object endCell - cell object<br>@Param boolean ignoreEvents - ignore onselection event</td>
+    <td>myTable.updateSelection([cell], [cell], true);</td>
+</tr>
+<tr>
+    <td><b>updateSelectionFromCoords:</b> select cells<br>@Param integer x1<br>@Param integer y1<br>@Param integer x2<br>@Param integer y2</td>
+    <td>myTable.updateSelectionFromCoords([integer], [integer], [integer], [integer]);</td>
+</tr>
+<tr>
+    <td><b>getWidth:</b> get the current column width<br>@Param integer columnNumber - column number starting on zero</td>
+    <td>myTable.getWidth([integer]);</td>
+</tr>
+<tr>
+    <td><b>setWidth:</b> change column width<br>@Param integer columnNumber - column number starting on zero<br>@Param string newColumnWidth - New column width</td>
+    <td>myTable.setWidth([integer], [integer]);</td>
+</tr>
+<tr>
+    <td><b>getHeight:</b> get the current row height<br>@Param integer rowNumber - row number starting on zero</td>
+    <td>myTable.getHeight([integer]);</td>
+</tr>
+<tr>
+    <td><b>setHeight:</b> change row height<br>@Param integer rowNumber - row number starting on zero<br>@Param string newRowHeight- New row height</td>
+    <td>myTable.setHeight([integer], [integer]);</td>
+</tr>
+<tr>
+    <td><b>getHeader:</b> get the current header by column number<br>@Param integer columnNumber - Column number starting on zero</td>
+    <td>myTable.getHeader([integer]);</td>
+</tr>
+<tr>
+    <td><b>getHeaders:</b> get all header titles</td>
+    <td>myTable.getHeaders();</td>
+</tr>
+<tr>
+    <td><b>setHeader:</b> change header by column<br>@Param integer columnNumber - column number starting on zero<br>@Param string columnTitle - New header title</td>
+    <td>myTable.setHeader([integer], [string]);</td>
+</tr>
+<tr>
+    <td><b>getStyle:</b> get table or cell style<br>@Param mixed - cell identification or null for the whole table.</td>
+    <td>myTable.getStyle([string]));</td>
+</tr>
+<tr>
+    <td><b>setStyle:</b> set cell(s) CSS style<br>@Param mixed - json with whole table style information or just one cell identification. Ex. A1.<br>@param k [optional]- CSS key<br>@param v [optional]- CSS value</td>
+    <td>myTable.setSyle([object], [string], [string]);</td>
+</tr>
+<tr>
+    <td><b>resetStyle:</b> remove all style from a cell<br>@Param string columnName - Column name, example: A1, B3, etc</td>
+    <td>myTable.resetStyle([string]);</td>
+</tr>
+<tr>
+    <td><b>getComments:</b> get cell comments<br>@Param mixed - cell identification or null for the whole table.</td>
+    <td>myTable.getComments([string]);</td>
+</tr>
+<tr>
+    <td><b>setComments:</b> set cell comments<br>@Param cell - cell identification<br>@Param text - comments</td>
+    <td>myTable.setComments([string], [string]);</td>
+</tr>
+<tr>
+    <td><b>orderBy:</b> reorder a column asc or desc<br>@Param integer columnNumber - column number starting on zero<br>@Param smallint sortType - One will order DESC, zero will order ASC, anything else will toggle the current order</td>
+    <td>myTable.orderBy([integer], [boolean]);</td>
+</tr>
+<tr>
+    <td><b>getConfig:</b> get table definitions</td>
+    <td>myTable.getConfig();</td>
+</tr>
+<tr>
+    <td><b>insertColumn:</b> add a new column<br>@param mixed - num of columns to be added or data to be added in one single column<br>@param int columnNumber - number of columns to be created<br>@param boolean insertBefore<br>@param object properties - column properties</td>
+    <td>myTable.insertColumn([mixed], [integer], [boolean], [object]);</td>
+</tr>
+<tr>
+    <td><b>deleteColumn:</b> remove column by number<br>@Param integer columnNumber - Which column should be excluded starting on zero<br>@param integer numOfColumns - number of columns to be excluded from the reference column</td>
+    <td>myTable.deleteColumn([integer], [integer]);</td>
+</tr>
+<tr>
+    <td><b>moveColumn:</b> change the column position<br>@Param integer columnPosition<br>@Param integer newColumnPosition</td>
+    <td>myTable.moveColumn([integer], [integer]);</td>
+</tr>
+<tr>
+    <td><b>insertRow:</b> add a new row<br>@Param mixed - number of blank lines to be insert or a single array with the data of the new row<br>@Param integer rowNumber - reference row number<br>@param boolean insertBefore</td>
+    <td>myTable.insertRow([mixed], [integer], [boolean]);</td>
+</tr>
+<tr>
+    <td><b>deleteRow:</b> remove row by number<br>@Param integer rowNumber - Which row should be excluded starting on zero<br>@Param integer numOfRows - number of lines to be excluded</td>
+    <td>myTable.deleteRow([integer], [integer]);</td>
+</tr>
+<tr>
+    <td><b>moveRow:</b> change the row position<br>@Param integer rowPosition<br>@Param integer newRowPosition</td>
+    <td>>myTable.moveRow([integer], [integer]);</td>
+</tr>
+<tr>
+    <td><b>download:</b> get the current data as a CSV file<br>@Param bool - true to download parsed formulas.</td>
+    <td>myTable.download([bool]);</td>
+</tr>
+<tr>
+    <td><b>getMeta:</b> get the table or cell meta information<br>@Param mixed - cell identification or null for the whole table.</td>
+    <td>myTable.getMeta([string]);</td>
+</tr>
+<tr>
+    <td><b>setMeta:</b> set the table or cell meta information<br>@Param mixed - json with whole table meta information.</td>
+    <td>myTable.setMeta[mixed]);</td>
+</tr>
+<tr>
+    <td><b>fullscreen:</b> Toogle table fullscreen mode<br>@Param boolan fullscreen - define fullscreen status as true or false</td>
+    <td>myTable.fullscreen([bool]);</td>
+</tr>
+<tr>
+    <td><b>getSelectedRows:</b> Get the selected rows<br>@Param boolan asIds - Get the rowNumbers or row DOM elements</td>
+    <td>myTable.getSelectedRows([bool]);</td>
+</tr>
+<tr>
+    <td><b>getSelectedColumns:</b> Get the selected columns<br>@Param boolan asIds - Get the colNumbers or row DOM elements</td>
+    <td>myTable.getSelectedColumns([bool]);</td>
+</tr>
+<tr>
+    <td><b>showColumn:</b> show column by number</td>
+    <td>myTable.showIndex([int]);</td>
+</tr>
+<tr>
+    <td><b>hideColumn:</b> hide column by number</td>
+    <td>myTable.hideColumn([int]);</td>
+</tr>
+<tr>
+    <td><b>showIndex:</b> show column of index numbers</td>
+    <td>myTable.showIndex();</td>
+</tr>
+<tr>
+    <td><b>hideIndex:</b> hide column of index numbers</td>
+    <td>myTable.hideIndex();</td>
+</tr>
+<tr>
+    <td><b>search:</b> search in the table, only if directive is enabled during inialization.<br>@Param string - Search for word</td>
+    <td>myTable.search([string]);</td>
+</tr>
+<tr>
+    <td><b>resetSearch:</b> reset search table</td>
+    <td>myTable.resetSearch();</td>
+</tr>
+<tr>
+    <td><b>whichPage:</b> Which page showing on Jspreadsheet - Valid only when pagination is true.</td>
+    <td>myTable.whichPage();</td>
+</tr>
+<tr>
+    <td><b>page:</b> Go to page number- Valid only when pagination is true.<br>@Param integer - Go to page number</td>
+    <td>myTable.page([integer]);</td>
+</tr>
+<tr>
+    <td><b>undo:</b> Undo last changes</td>
+    <td>myTable.undo();</td>
+</tr>
+<tr>
+    <td><b>redo:</b> Redo changes</td>
+    <td>myTable.redo();</td>
+</tr>
+</tbody>
+</table>
+
+<p><a href='/jspreadsheet/v4/examples/programmatically-changes'>Working example</a></p><br>
+
+<br>
+
+<div class="section-divisor">
+    <div class="section-number">2</div> <div class="section-title"><h2>Events</h2></div>
+</div>
+
+<table cellpadding='10' cellspacing='0' class='examples'>
+<thead><tr><th>Event</th><th>description</th></tr></thead>
+<tbody>
+<tr>
+    <td><b>onload</b></td>
+    <td>This method is called when the method setData</td>
+</tr>
+<tr>
+    <td><b>onbeforechange</b></td>
+    <td>Before a column value is changed. NOTE: It is possible to overwrite the original value, by return a new value on this method. v3.4.0+</td>
+</tr>
+<tr>
+    <td><b>onchange</b></td>
+    <td>After a column value is changed.</td>
+</tr>
+<tr>
+    <td><b>onafterchanges</b></td>
+    <td>After all changes are applied in the table.</td>
+</tr>
+<tr>
+    <td><b>onpaste</b></td>
+    <td>After a paste action is performed in the javascript table.</td>
+</tr>
+<tr>
+    <td><b>onbeforepaste</b></td>
+    <td>Before the paste action is performed. Used to parse any input data, should return the data.</td>
+</tr>
+<tr>
+    <td><b>oninsertrow</b></td>
+    <td>After a new row is inserted.</td>
+</tr>
+<tr>
+    <td><b>onbeforeinsertrow</b></td>
+    <td>Before a new row is inserted. You can cancel the insert event by returning false.</td>
+</tr>
+<tr>
+    <td><b>ondeleterow</b></td>
+    <td>After a row is excluded.</td>
+</tr>
+<tr>
+    <td><b>onbeforedeleterow</b></td>
+    <td>Before a row is deleted. You can cancel the delete event by returning false.</td>
+</tr>
+<tr>
+    <td><b>oninsertcolumn</b></td>
+    <td>After a new column is inserted.</td>
+</tr>
+<tr>
+    <td><b>onbeforeinsertcolumn</b></td>
+    <td>Before a new column is inserted. You can cancel the insert event by returning false.</td>
+</tr>
+<tr>
+    <td><b>ondeletecolumn</b></td>
+    <td>After a column is excluded.</td>
+</tr>
+<tr>
+    <td><b>onbeforedeletecolumn</b></td>
+    <td>Before a column is excluded. You can cancel the insert event by returning false.</td>
+</tr>
+<tr>
+    <td><b>onmoverow</b></td>
+    <td>After a row is moved to a new position.</td>
+</tr>
+<tr>
+    <td><b>onmovecolumn</b></td>
+    <td>After a column is moved to a new position.</td>
+</tr>
+<tr>
+    <td><b>onresizerow</b></td>
+    <td>After a change in row height.</td>
+</tr>
+<tr>
+    <td><b>onresizecolumn</b></td>
+    <td>After a change in column width.</td>
+</tr>
+<tr>
+    <td><b>onselection</b></td>
+    <td>On the selection is changed.</td>
+</tr>
+<tr>
+    <td><b>onsort</b></td>
+    <td>After a colum is sorted.</td>
+</tr>
+<tr>
+    <td><b>onfocus</b></td>
+    <td>On table focus</td>
+</tr>
+<tr>
+    <td><b>onblur</b></td>
+    <td>On table blur</td>
+</tr>
+<tr>
+    <td><b>onmerge</b></td>
+    <td>On column merge</td>
+</tr>
+<tr>
+    <td><b>onchangeheader</b></td>
+    <td>On header change</td>
+</tr>
+<tr>
+    <td><b>onundo</b></td>
+    <td>On undo is applied</td>
+</tr>
+<tr>
+    <td><b>onredo</b></td>
+    <td>On redo is applied</td>
+</tr>
+<tr>
+    <td><b>oneditionstart</b></td>
+    <td>When a openEditor is called.</td>
+</tr>
+<tr>
+    <td><b>oneditionend</b></td>
+    <td>When a closeEditor is called.</td>
+</tr>
+<tr>
+    <td><b>onchangestyle</b></td>
+    <td>When a setStyle is called.</td>
+</tr>
+<tr>
+    <td><b>onchangemeta</b></td>
+    <td>When a setMeta is called.</td>
+</tr>
+<tr>
+    <td><b>onchangepage</b></td>
+    <td>When the page is changed.</td>
+</tr>
+</tbody>
+</table>
+
+<p><a href='/jspreadsheet/v4/examples/events'>Example on handling events on Jspreadsheet</a></p>
+
+<br>
+
+<div class="section-divisor">
+    <div class="section-number">3</div> <div class="section-title"><h2>Initialization</h2></div>
+</div>
+
+<table cellpadding='10' cellspacing='0' class='examples'>
+<thead><tr><th>Parameter</th><th>description</th></tr></thead>
+<tbody>
+<tr>
+    <td><b>url</b></td>
+    <td>Load a external json file from this URL: string</td>
+</tr>
+<tr>
+    <td><b>data</b></td>
+    <td>Load this data into the javascript table: array</td>
+</tr>
+<tr>
+    <td><b>copyCompatibility</b></td>
+    <td>When is true copy and export will bring formula results, if false will bring formulas: boolean</td>
+</tr>
+<tr>
+    <td><b>rows</b></td>
+    <td>Row properties: height.: object</td>
+</tr>
+<tr>
+    <td><b>columns</b></td>
+    <td>Column type, title, width, align, dropdown options, text wrapping, mask, etc.: object</td>
+</tr>
+<tr>
+    <td><b>defaultColWidth</b></td>
+    <td>Default width for a new column: integer</td>
+</tr>
+<tr>
+    <td><b>defaultColAlign</b></td>
+    <td>Default align for a new column: [center, left, right]</td>
+</tr>
+<tr>
+    <td><b>minSpareRows</b></td>
+    <td>Minimum number of spare rows: [integer]</td>
+</tr>
+<tr>
+    <td><b>minSpareCols</b></td>
+    <td>Minimum number of spare cols: [integer]</td>
+</tr>
+<tr>
+    <td><b>minDimensions</b></td>
+    <td>Minimum table dimensions: [cols,rows]</td>
+</tr>
+<tr>
+    <td><b>allowExport</b></td>
+    <td>Allow table export: bool</td>
+</tr>
+<tr>
+    <td><b>includeHeadersOnDownload</b></td>
+    <td>Include header titles on download: bool</td>
+</tr>
+<tr>
+    <td><b>columnSorting</b></td>
+    <td>Allow column sorting: bool</td>
+</tr>
+<tr>
+    <td><b>columnDrag</b></td>
+    <td>Allow column dragging: bool</td>
+</tr>
+<tr>
+    <td><b>columnResize</b></td>
+    <td>Allow column resizing: bool</td>
+</tr>
+<tr>
+    <td><b>rowResize</b></td>
+    <td>Allow row resizing: bool</td>
+</tr>
+<tr>
+    <td><b>rowDrag</b></td>
+    <td>Allow row dragging: bool</td>
+</tr>
+<tr>
+    <td><b>editable</b></td>
+    <td>Allow table edition: bool</td>
+</tr>
+<tr>
+    <td><b>allowInsertRow</b></td>
+    <td>Allow insert a new row: bool</td>
+</tr>
+<tr>
+    <td><b>allowManualInsertRow</b></td>
+    <td>Allow user to insert a new row: bool</td>
+</tr>
+<tr>
+    <td><b>allowInsertColumn</b></td>
+    <td>Allow insert a new column: bool</td>
+</tr>
+<tr>
+    <td><b>allowManualInsertColumn</b></td>
+    <td>Allow user to create a new column: bool</td>
+</tr>
+<tr>
+    <td><b>allowDeleteRow</b></td>
+    <td>Allow delete a row: bool</td>
+</tr>
+<tr>
+    <td><b>allowDeleteColumn</b></td>
+    <td>Allow delete a column: bool</td>
+</tr>
+<tr>
+    <td><b>allowRenameColumn</b></td>
+    <td>Allow rename a column: bool</td>
+</tr>
+<tr>
+    <td><b>allowComments</b></td>
+    <td>Allow comments over the cells: bool</td>
+</tr>
+<tr>
+    <td><b>wordWrap</b></td>
+    <td>Global text wrapping: bool</td>
+</tr>
+<tr>
+    <td><b>csv</b></td>
+    <td>Load a external CSV file from this URL: string</td>
+</tr>
+<tr>
+    <td><b>csvFileName</b></td>
+    <td>Default filename for a download method: string</td>
+</tr>
+<tr>
+    <td><b>csvHeaders</b></td>
+    <td>Load header titles from the CSV file: bool</td>
+</tr>
+<tr>
+    <td><b>csvDelimiter</b></td>
+    <td>Default delimiter for the CSV file: string</td>
+</tr>
+<tr>
+    <td><b>selectionCopy</b></td>
+    <td>Allow selection copy: bool</td>
+</tr>
+<tr>
+    <td><b>mergeCells</b></td>
+    <td>Cells to be merged in the table innitialization: object</td>
+</tr>
+<tr>
+    <td><b>toolbar</b></td>
+    <td>Add custom toolbars: object</td>
+</tr>
+<tr>
+    <td><b>search: bool</b></td>
+    <td>Allow search in the table</td>
+</tr>
+<tr>
+    <td><b>pagination: integer</b></td>
+    <td>Break the table by pages</td>
+</tr>
+<tr>
+    <td><b>paginationOptions: [array of numbers]</b></td>
+    <td>Number of records per page: 25,50,75,100 for example.</td>
+</tr>
+<tr>
+    <td><b>fullscreen: boll</b></td>
+    <td>Fullscreen mode</td>
+</tr>
+<tr>
+    <td><b>lazyLoading: bool</b></td>
+    <td>Activate the table lazyloading</td>
+</tr>
+<tr>
+    <td><b>loadingSpin: bool</b></td>
+    <td>Activate the loading spin</td>
+</tr>
+<tr>
+    <td><b>tableOverflow</b></td>
+    <td>Allow table overflow: bool</td>
+</tr>
+<tr>
+    <td><b>tableHeight</b></td>
+    <td>Force the max height of the table: CSS String</td>
+</tr>
+<tr>
+    <td><b>tableWidth</b></td>
+    <td>Force the max width of the table: CSS String</td>
+</tr>
+<tr>
+    <td><b>meta</b></td>
+    <td>Meta information: object</td>
+</tr>
+<tr>
+    <td><b>style</b></td>
+    <td>Cells style in the table innitialization: object</td>
+</tr>
+<tr>
+    <td><b>parseFormulas</b></td>
+    <td>Enable execution of formulas inside the table</td>
+</tr>
+<tr>
+    <td><b>autoIncrement</b></td>
+    <td>Auto increment actions when using the dragging corner</td>
+</tr>
+<tr>
+    <td><b>updateTable</b></td>
+    <td>Method to config custom script execution. NOTE: This does not work with lazyLoading, Pagination or Search options.</td>
+</tr>
+<tr>
+    <td><b>nestedHeaders</b></td>
+    <td>Define the nested headers, including title, colspan, etc: object</td>
+</tr>
+<tr>
+    <td><b>contextMenu</b></td>
+    <td>Context menu content: function() { return customMenu }</td>
+</tr>
+<tr>
+    <td><b>text: object</b></td>
+    <td>All messages to be customized</td>
+</tr>
+</tbody>
+</table>
+
+
+<br>
+
+<div class="section-divisor">
+    <div class="section-number">4</div> <div class="section-title"><h2>Translations</h2></div>
+</div>
+
+<table cellpadding='10' cellspacing='0' class='examples'>
+<thead><tr><th>Key</th><th>Default value</th></tr></thead>
+<tbody>
+<tr>
+    <td><b>noRecordsFound</b></td>
+    <td>No records found</td>
+</tr>
+<tr>
+    <td><b>showingPage</b></td>
+    <td>Showing page {0} of {1} entries</td>
+</tr>
+<tr>
+    <td><b>show</b></td>
+    <td>Show</td>
+</tr>
+<tr>
+    <td><b>entries</b></td>
+    <td>entries</td>
+</tr>
+<tr>
+    <td><b>insertANewColumnBefore</b></td>
+    <td>Insert a new column before</td>
+</tr>
+<tr>
+    <td><b>insertANewColumnAfter</b></td>
+    <td>Insert a new column after</td>
+</tr>
+<tr>
+    <td><b>deleteSelectedColumns</b></td>
+    <td>Delete selected columns</td>
+</tr>
+<tr>
+    <td><b>renameThisColumn</b></td>
+    <td>Rename this column</td>
+</tr>
+<tr>
+    <td><b>orderAscending</b></td>
+    <td>Order ascending</td>
+</tr>
+<tr>
+    <td><b>orderDescending</b></td>
+    <td>Order descending</td>
+</tr>
+<tr>
+    <td><b>insertANewRowBefore</b></td>
+    <td>Insert a new row before</td>
+</tr>
+<tr>
+    <td><b>insertANewRowAfter</b></td>
+    <td>Insert a new row after</td>
+</tr>
+<tr>
+    <td><b>deleteSelectedRows</b></td>
+    <td>Delete selected rows</td>
+</tr>
+<tr>
+    <td><b>editComments</b></td>
+    <td>Edit comments</td>
+</tr>
+<tr>
+    <td><b>addComments</b></td>
+    <td>Add comments</td>
+</tr>
+<tr>
+    <td><b>comments</b></td>
+    <td>Comments</td>
+</tr>
+<tr>
+    <td><b>clearComments</b></td>
+    <td>Clear comments</td>
+</tr>
+<tr>
+    <td><b>copy</b></td>
+    <td>Copy...</td>
+</tr>
+<tr>
+    <td><b>paste</b></td>
+    <td>Paste...</td>
+</tr>
+<tr>
+    <td><b>saveAs</b></td>
+    <td>Save as...</td>
+</tr>
+<tr>
+    <td><b>about</b></td>
+    <td>About</td>
+</tr>
+<tr>
+    <td><b>areYouSureToDeleteTheSelectedRows</b></td>
+    <td>Are you sure to delete the selected rows?</td>
+</tr>
+<tr>
+    <td><b>areYouSureToDeleteTheSelectedColumns</b></td>
+    <td>Are you sure to delete the selected columns?</td>
+</tr>
+<tr>
+    <td><b>thisActionWillDestroyAnyExistingMergedCellsAreYouSure</b></td>
+    <td>This action will destroy any existing merged cells. Are you sure?</td>
+</tr>
+<tr>
+    <td><b>thisActionWillClearYourSearchResultsAreYouSure</b></td>
+    <td>This action will clear your search results. Are you sure?</td>
+</tr>
+<tr>
+    <td><b>thereIsAConflictWithAnotherMergedCell</b></td>
+    <td>There is a conflict with another merged cell</td>
+</tr>
+<tr>
+    <td><b>invalidMergeProperties</b></td>
+    <td>Invalid merged properties</td>
+</tr>
+<tr>
+    <td><b>cellAlreadyMerged</b></td>
+    <td>Cell already merged</td>
+</tr>
+<tr>
+    <td><b>noCellsSelected</b></td>
+    <td>No cells selected</td>
+</tr>
+</tbody>
+</table>
+
+<p><a href='/jspreadsheet/v4/examples/translations'>Working example</a></p>
+
+</div>
+</div>

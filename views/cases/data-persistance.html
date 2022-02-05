@@ -1,0 +1,166 @@
+<div class="section">
+<div class="section-content">
+
+<div class='breadcrumb'><a href='/jspreadsheet/v4/cases' title='Back to the use cases section'>Back to Use Cases</a></div>
+
+<h1>Data persistance</h1>
+
+<p>With the persistance directive, each change in the data will be sent to a remote URL.</p>
+
+<div id="spreadsheet"></div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    mySpreadsheet = jspreadsheet(document.getElementById('spreadsheet'), {
+        url:'/jspreadsheet/books.json',
+        columns: [
+            {
+                type: 'text',
+                width: '50px',
+                title: 'Code',
+                name: 'id',
+                readOnly: true,
+                primaryKey: true
+            },
+            {
+                type: 'text',
+                width: '80px',
+                title:'Image',
+                name:'thumbnailUrl'
+            },
+            {
+                type: 'text',
+                width: '200px',
+                title:'Title',
+                name:'title'
+            },
+            {
+                type: 'text',
+                width: '55px',
+                title:'Pages',
+                name:'pageCount'
+            },
+            {
+                type: 'calendar',
+                width: '90px',
+                title:'Published',
+                name: 'publishedDate'
+            },
+            {
+                type: 'text',
+                width: '200px',
+                title:'Author',
+                name:'authors'
+            },
+            {
+                type: 'dropdown',
+                width: '180px',
+                title:'Categories',
+                name:'categories',
+                source:['Internet','Web Development', 'Java', 'Mobile', 'Open Source'],
+                multiple:true
+            },
+         ],
+         persistance: '/jspreadsheet/v4/save',
+         updateTable: function(instance, cell, col, row, val, label, cellName) {
+             if (col == 1) {
+                 if (! val) {
+                     cell.innerHTML = '<img src="https://images-na.ssl-images-amazon.com/images/I/21%2Bwfxx2lyL._SX319_BO1,204,203,200_.jpg" style="width:30px;">';
+                 } else {
+                     cell.innerHTML = '<img src="' + val + '" style="width:30px;">';
+                 }
+             }
+
+             cell.style.overflow = 'hidden';
+         }
+    });
+});
+</script>
+
+<br><br>
+
+<h3>Source code</h3>
+
+<pre class="prettyprint linenums">
+&#60;html>
+&#60;script src="https://bossanova.uk/jspreadsheet/v4/jexcel.js">&#60;/script>
+&#60;script src="https://jsuites.net/v4/jsuites.js">&#60;/script>
+&#60;link rel="stylesheet" href="https://bossanova.uk/jspreadsheet/v4/jexcel.css" type="text/css" />
+&#60;link rel="stylesheet" href="https://jsuites.net/v4/jsuites.css" type="text/css" />
+
+&#60;div id="spreadsheet">&#60;/div>
+
+&#60;script>
+var mySpreadsheet = jspreadsheet(document.getElementById('spreadsheet'), {
+    url:'/jspreadsheet/books.json',
+    columns: [
+        {
+            type: 'text',
+            width: '50px',
+            title: 'Code',
+            name: 'id',
+            readOnly: true,
+            primaryKey: true
+        },
+        {
+            type: 'text',
+            width: '80px',
+            title:'Image',
+            name:'thumbnailUrl'
+        },
+        {
+            type: 'text',
+            width: '200px',
+            title:'Title',
+            name:'title'
+        },
+        {
+            type: 'text',
+            width: '55px',
+            title:'Pages',
+            name:'pageCount'
+        },
+        {
+            type: 'calendar',
+            width: '90px',
+            title:'Published',
+            name: 'publishedDate'
+        },
+        {
+            type: 'text',
+            width: '200px',
+            title:'Author',
+            name:'authors'
+        },
+        {
+            type: 'dropdown',
+            width: '180px',
+            title:'Categories',
+            name:'categories',
+            source:['Internet','Web Development', 'Java', 'Mobile', 'Open Source'],
+            multiple:true
+        },
+     ],
+     allowComments:true,
+     persistance: '/jspreadsheet/v4/save',
+     updateTable: function(instance, cell, col, row, val, label, cellName) {
+         if (col == 1) {
+             if (! val) {
+                 cell.innerHTML = '&#60;img src="https://images-na.ssl-images-amazon.com/images/I/21%2Bwfxx2lyL._SX319_BO1,204,203,200_.jpg" style="width:30px;">';
+             } else {
+                 cell.innerHTML = '&#60;img src="' + val + '" style="width:30px;">';
+             }
+         }
+
+         cell.style.overflow = 'hidden';
+     },
+     onevent:function() {
+         console.log(arguments);
+     }
+});
+&#60;/script>
+&#60;/html>
+</pre>
+
+</div>
+</div>

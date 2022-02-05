@@ -1,0 +1,182 @@
+<script type="text/javascript" src="js/themes.js"></script>
+<link rel="stylesheet" href="/jspreadsheet/v4/jexcel.themes.css" type="text/css" />
+
+<div class="section">
+<div class="section-content theme-editor">
+
+<h1>Spreadsheet color themes</h1>
+
+Jspreadsheet colour theme editor<br>
+
+<div class='line'>
+    <div class='row start'>
+        <div class='column center p6 small'>
+            <div class='theme' data-theme='jexcel' onclick='themes.load(this)' style='background-color:#f3f3f3'></div> Default
+        </div><div class='column center p6 small'>
+            <div class='theme' data-theme='dark' onclick='themes.load(this)' style='background-color:#313131'></div> Dark
+        </div>
+    </div>
+</div>
+
+<div class='row start'>
+<div class='column'>
+
+    <div class='p10'>
+        <div class='p4'>
+            <div class='colorpicker row start'> 
+                <div id='jexcel_header_color' style='margin-right:5px'></div> Header color
+            </div>
+        </div>
+        <div class='p4'>
+            <div class='colorpicker row start'> 
+                <div id='jexcel_header_color_highlighted' style='margin-right:5px'></div> Header color highlighted
+            </div>
+        </div>
+        <div class='p4'>
+            <div class='colorpicker row start'> 
+                <div id='jexcel_header_background' style='margin-right:5px'></div> Header background color
+            </div>
+        </div>
+        <div class='p4'>
+            <div class='colorpicker row start'> 
+                <div id='jexcel_header_background_highlighted' style='margin-right:5px'></div> Header background color highlighted
+            </div>
+        </div>
+    </div>
+    
+    <div class='p10'>
+        <div class='p4'>
+            <div class='colorpicker row start'> 
+                <div id='jexcel_content_color' style='margin-right:5px'></div> Content color
+            </div>
+        </div>
+        <div class='p4'>
+            <div class='colorpicker row start'> 
+                <div id='jexcel_content_color_highlighted' style='margin-right:5px'></div> Content color highlighted
+            </div>
+        </div>
+        <div class='p4'>
+            <div class='colorpicker row start'> 
+                <div id='jexcel_content_background' style='margin-right:5px'></div> Content background color
+            </div>
+        </div>
+        <div class='p4'>
+            <div class='colorpicker row start'> 
+                <div id='jexcel_content_background_highlighted' style='margin-right:5px'></div> Content background color highlighted
+            </div>
+        </div>
+    </div>
+</div>
+<div class='column'>
+
+    <div class='p10'>
+        <div class='p4'>
+            <div class='colorpicker row start'> 
+                <div id='jexcel_menu_color' style='margin-right:5px'></div> Menu color
+            </div>
+        </div>
+        <div class='p4'>
+            <div class='colorpicker row start'> 
+                <div id='jexcel_menu_color_highlighted' style='margin-right:5px'></div> Menu color highlighted
+            </div>
+        </div>
+        <div class='p4'>
+            <div class='colorpicker row start'> 
+                <div id='jexcel_menu_background' style='margin-right:5px'></div> Menu background color
+            </div>
+        </div>
+        <div class='p4'>
+            <div class='colorpicker row start'> 
+                <div id='jexcel_menu_background_highlighted' style='margin-right:5px'></div> Menu background color highlighted
+            </div>
+        </div>
+    </div>
+
+    <div class='p10'>
+        <div class='p4'>
+            <div class='colorpicker row start'> 
+                <div id='jexcel_border_color' style='margin-right:5px'></div> Border color
+            </div>
+        </div>
+        <div class='p4'>
+            <div class='colorpicker row start'> 
+                <div id='jexcel_border_color_highlighted' style='margin-right:5px'></div> Border color highlighted
+            </div>
+        </div>
+
+        <div class='p4'>
+            <div class='colorpicker row start'> 
+                <div id='active_color' style='margin-right:5px'></div> Link color
+            </div>
+        </div>
+    </div>
+
+</div>
+</div>
+
+<br>
+
+<div id="spreadsheet"></div>
+
+<br><br>
+
+<h3>Source code</h3>
+
+<pre class="prettyprint linenums linenums">
+&#60;html>
+&#60;script src="https://bossanova.uk/jspreadsheet/v4/jexcel.js">&#60;/script>
+&#60;link rel="stylesheet" href="https://bossanova.uk/jspreadsheet/v4/jexcel.css" type="text/css" />
+&#60;link rel="stylesheet" href="https://bossanova.uk/jspreadsheet/v4/jexcel.themes.css" type="text/css" />
+
+&#60;script src="https://jsuites.net/v4/jsuites.js">&#60;/script>
+&#60;link rel="stylesheet" href="https://jsuites.net/v4/jsuites.css" type="text/css" />
+
+&#60;div id="spreadsheet">&#60;/div>
+
+&#60;script>
+jspreadsheet(document.getElementById('spreadsheet'), {
+    minDimensions: [10,10]
+});
+&#60;/script>
+&#60;/html>
+</pre>
+
+<br>
+
+<p><b>NOTE</b> Add the following variables to your CSS files</p>
+
+<pre id='style'></pre>
+
+</div>
+</div>
+
+<style>
+.colorpicker {
+    font-size: 0.9em;
+}
+.colorpicker > div {
+    width: 18px;
+    height: 18px;
+    border: 1px solid black;
+    display: inline-block;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.theme {
+    width: 48px;
+    height: 48px;
+    border-radius: 3px;
+    border: 1px solid black;
+    cursor: pointer;
+}
+.line {
+    padding: 20px;
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    themes()
+});
+</script>

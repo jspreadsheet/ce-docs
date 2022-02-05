@@ -1,0 +1,168 @@
+<div class="section">
+<div class="section-content">
+
+<div class='breadcrumb'><a href='/jspreadsheet/v4/examples' title='Back to the examples section'>Back to Examples</a></div>
+
+<h1>Calendar column type</h1>
+
+<p>The example below shows how to use and customize special calendar column type.</p>
+
+<div id="spreadsheet"></div>
+
+<p style="font-size:0.8em;">Jpreadsheet uses the jSuites <a href="https://jsuites.net/v4/javascript-calendar" target="blank">Javascript Calendar</a> plugin</p>
+
+<script>
+var data = [
+    ['Flag Fen', 'South East', '2020-04-19'],
+    ['Bristol Aero Collection (BAC)','South West','2019-04-03'],
+    ['Experience Barnsley', 'North','2018-12-03'],
+    ['Cinema Museum', 'London',''],
+    ['University of Hertfordshire Art Collection', 'South East',''],
+    ['LUX London', 'London','2016-11-03'],
+];
+
+document.addEventListener('DOMContentLoaded', function() {
+    test = jspreadsheet(document.getElementById('spreadsheet'), {
+        data:data,
+        columns: [
+            {
+                type:'text',
+                title:'Museum',
+                width:'300',
+            },
+            {
+                type:'dropdown',
+                title:'Region',
+                source:['South East','South West','North','London'],
+                width:'200',
+            },
+            {
+                type:'calendar',
+                title:'Last visit',
+                options: { format:'DD/MM/YYYY' },
+                width:'100',
+            },
+        ]
+    });
+});
+</script>
+
+<br>
+
+<h3>Source code</h3>
+
+<pre class="prettyprint linenums">
+&#60;html>
+&#60;script src="https://bossanova.uk/jspreadsheet/v4/jexcel.js">&#60;/script>
+&#60;script src="https://jsuites.net/v4/jsuites.js">&#60;/script>
+&#60;link rel="stylesheet" href="https://bossanova.uk/jspreadsheet/v4/jexcel.css" type="text/css" />
+&#60;link rel="stylesheet" href="https://jsuites.net/v4/jsuites.css" type="text/css" />
+
+&#60;div id="spreadsheet">&#60;/div>
+
+&#60;script>
+var data = [
+    ['Flag Fen', 'South East', '2019-01-01'],
+    ['Bristol Aero Collection (BAC)','South West','2019-04-03'],
+    ['Experience Barnsley', 'North','2018-12-03'],
+    ['Cinema Museum', 'London',''],
+    ['University of Hertfordshire Art Collection', 'South East',''],
+    ['LUX London', 'London','2016-11-03'],
+];
+
+jspreadsheet(document.getElementById('spreadsheet'), {
+    data:data,
+    columns: [
+        {
+            type:'text',
+            title:'Museum',
+            width:'300',
+        },
+        {
+            type:'dropdown',
+            title:'Region',
+            source:['South East','South West','North','London'],
+            width:'200',
+        },
+        {
+            type:'calendar',
+            title:'Last visit',
+            options: { format:'DD/MM/YYYY' },
+            width:'100',
+        },
+    ]
+});
+&#60;/script>
+&#60;/html>
+</pre>
+
+<br>
+
+<h2>Date column customization</h2>
+
+<p>Customize the format and the behavior of your column through the initialization options, as follow:</p>
+
+<pre class="prettyprint linenums">
+options : {
+    // Date format
+    format:'DD/MM/YYYY',
+    // Allow keyboard date entry
+    readonly:0,
+    // Today is default
+    today:0,
+    // Show timepicker
+    time:0,
+    // Show the reset button
+    resetButton:true,
+    // Placeholder
+    placeholder:'',
+    // Translations can be done here
+    months:['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+    weekdays:['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
+    weekdays_short:['S', 'M', 'T', 'W', 'T', 'F', 'S'],
+    // Value
+    value:null,
+    // Events
+    onclose:null,
+    onchange:null,
+    // Fullscreen (this is automatic set for screensize < 800)
+    fullscreen:false,
+};
+</pre>
+
+<p>More information about the jSuites <a href="https://jsuites.net/v4/javascript-calendar" target="_blank">Responsive date time picker</a></p>
+
+<br>
+
+<p>Considering the example above, you can create a calendar including a time picker by simple send the option <b>time:1</b> as the following example.</p>
+
+<pre class="prettyprint linenums">
+&#60;script>
+jspreadsheet(document.getElementById('spreadsheet'), {
+    data:data,
+    columns: [
+        {
+            type:'text',
+            title:'Museum',
+            width:'300',
+        },
+        {
+            type:'dropdown',
+            title:'Region',
+            source:['South East','South West','North','London'],
+            width:'200',
+        },
+        {
+            type:'calendar',
+            title:'Last visit',
+            options: { format:'DD/MM/YYYY HH24:MI', time:1 },
+            width:'100',
+        },
+    ]
+});
+&#60;/script>
+</pre>
+
+
+</div>
+</div>

@@ -1,0 +1,25 @@
+<div class="section">
+<div class="section-content">
+
+<h1>Jspreadsheet v4 Examples</h1>
+
+<p>We bring in this section various examples from basic to advance applications.</p>
+
+<ul>
+
+<?php
+$module = $this->getParam(0);
+foreach ($this->view['pages'] AS $k => $v) {
+    $url = $v['url'];
+    $url = explode('/', $url);
+    if (isset($url[1]) && isset($url[2]) && $url[1] == 'examples') {
+        echo "<li onclick=\"window.open('/$module/{$v['url']}', '_top')\"><a href='/$module/{$v['url']}' title='{$v['title']}'>{$v['link']}</a><br><span>{$v['description']}</span></li><br>";
+    }
+}
+?>
+ 
+ 
+</ul>
+
+</div>
+</div>

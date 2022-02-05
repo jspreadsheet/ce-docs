@@ -1,0 +1,128 @@
+<div class="section">
+<div class="section-content">
+
+<div class='breadcrumb'><a href='/jspreadsheet/v4/examples' title='Back to the examples section'>Back to Examples</a></div>
+
+<h1>Header updates</h1>
+
+<p>There are three ways to change a header title.</p>
+
+<ul>
+<li>The user clicks in a selected header and hold the mouse for 2 seconds, a prompt will request the new title;</li>
+<li>Via contextMenu. the user right clicks in the column and select the option Rename column</li>
+<li>Using the method setHeader(colNumber, title) as example below:</li>
+</ul>
+
+
+<div id="spreadsheet"></div>
+
+<br><br>
+
+<select id='columnNumber'>
+<option value="0">Column 0</option>
+<option value="1">Column 1</option>
+<option value="2">Column 2</option>
+</select>
+
+<input type='button' value='Set header title' onclick="table.setHeader(document.getElementById('columnNumber').value)" class='jbutton dark'>
+<input type='button' value='Get header title' onclick="alert(table.getHeader(document.getElementById('columnNumber').value))" class='jbutton dark'>
+
+<br><br>
+
+
+<h3>Source code</h3>
+
+<pre class="prettyprint linenums">
+&#60;html>
+&#60;script src="https://bossanova.uk/jspreadsheet/v4/jexcel.js">&#60;/script>
+&#60;script src="https://jsuites.net/v4/jsuites.js">&#60;/script>
+&#60;link rel="stylesheet" href="https://jsuites.net/v4/jsuites.css" type="text/css" />
+&#60;link rel="stylesheet" href="https://bossanova.uk/jspreadsheet/v4/jexcel.css" type="text/css" />
+
+&#60;div id="spreadsheet">&#60;/div>
+
+&#60;script>
+var data = [
+    ['BR', 'Cheese', 1],
+    ['CA', 'Apples', 0],
+    ['US', 'Carrots', 1],
+    ['GB', 'Oranges', 0],
+];
+
+table = jspreadsheet(document.getElementById('spreadsheet'), {
+    data:data,
+    columns: [
+        {
+            type: 'autocomplete',
+            title: 'Country',
+            width: '300',
+            url: '/jspreadsheet/countries'
+        },
+        {
+            type: 'dropdown',
+            title: 'Food',
+            width: '150',
+            source: ['Apples','Bananas','Carrots','Oranges','Cheese']
+        },
+        {
+            type: 'checkbox',
+            title: 'Stock',
+            width:'100'
+        },
+    ]
+});
+&#60;/script>
+
+&#60;select id='columnNumber'>
+&#60;option value="0">Column 0&#60;/option>
+&#60;option value="1">Column 1&#60;/option>
+&#60;option value="2">Column 2&#60;/option>
+&#60;/select>
+
+&#60;input type='button' value='Set header title' onclick="table.setHeader(document.getElementById('columnNumber').value)" />
+&#60;input type='button' value='Get header title' onclick="table.getHeader(document.getElementById('columnNumber').value)" />
+
+&#60;/html>
+</pre>
+
+
+<script>
+var table = null;
+var data = [
+    ['BR', 'Cheese', 1],
+    ['CA', 'Apples', 0],
+    ['US', 'Carrots', 1],
+    ['GB', 'Oranges', 0],
+];
+
+document.addEventListener('DOMContentLoaded', function() {
+    table = jspreadsheet(document.getElementById('spreadsheet'), {
+        data: data,
+        columns: [
+            {
+                type: 'autocomplete',
+                title: 'Country',
+                width: '300',
+                url: '/jspreadsheet/countries'
+            },
+            {
+                type: 'dropdown',
+                title: 'Food',
+                width: '150',
+                source: ['Apples','Bananas','Carrots','Oranges','Cheese']
+            },
+            {
+                type: 'checkbox',
+                title: 'Stock',
+                width:'100'
+            },
+        ]
+    });
+});
+</script>
+
+<br><br>
+
+
+</div>
+</div>

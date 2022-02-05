@@ -1,0 +1,431 @@
+<div class="section">
+<div class="section-content">
+
+<div class='breadcrumb'><a href='/jspreadsheet/v4/docs' title='Back to the documentation section'>Back to Documentation</a></div>
+
+<h1>Getting started</h1>
+
+<p>Jspreadsheet is a vanilla javascript plugin to embed a online spreadsheet in your web based applications. Bring highly dynamic datasets to your application and improve the user experience of your software.</p> 
+
+
+
+<pre class="prettyprint linenums">
+% npm install jspreadsheet-ce
+</pre>
+
+<p>Download from our github page: <a href="https://github.com/jspreadsheet/ce">https://github.com/jspreadsheet/ce</a></p>
+
+<br>
+ 
+
+<h2><a name="Initialization">Initialization</a></h2>
+
+<p>You can initiate an online spreadsheet including data from a HTML table, a JS array, a CSV or a JSON file, following the examples below:</p>
+
+<h3><a name="Loading-from-a-javascript-array">Loading from a javascript array</a></h3>
+
+<br>
+
+<pre class="prettyprint linenums">
+&lt;div id='my-spreadsheet'>&lt;/div>
+
+&lt;script&gt;
+data = [
+    [&#39;Mazda&#39;, 2001, 2000],
+    [&#39;Pegeout&#39;, 2010, 5000],
+    [&#39;Honda Fit&#39;, 2009, 3000],
+    [&#39;Honda CRV&#39;, 2010, 6000],
+];
+
+jspreadsheet(document.getElementById('my-spreadsheet'), {
+    data:data,
+    columns:[
+        { title:'Model', width:300 },
+        { title:'Price', width:80 },
+        { title:'Model', width:100 }
+    ]
+});
+&lt;/script&gt;
+</pre>
+
+<br>
+
+<h3><a name="Loading-from-a-json-file">Loading from a JSON file</a></h3>
+
+<pre class="prettyprint linenums">
+&lt;div id='my-spreadsheet'>&lt;/div>
+
+&lt;script&gt;
+jspreadsheet(document.getElementById('my-spreadsheet'), {
+    url:'data.json',
+    columns:[
+        { title:'Model', width:300 },
+        { title:'Price', width:80 },
+        { title:'Model', width:100 }
+    ]
+});
+&lt;/script&gt;
+</pre>
+
+<br>
+
+<h3><a name="Loading-from-a-csv-file">Loading from a CSV file</a></h3>
+
+<pre class="prettyprint linenums">
+&lt;div id='my-spreadsheet'>&lt;/div>
+
+&lt;script>
+jspreadsheet(document.getElementById('my-spreadsheet'), {
+    csv:'demo.csv',
+    csvHeaders:true,
+    columns:[
+        { width:300 },
+        { width:80 },
+        { width:100 }
+    ]
+});
+&lt;/script>
+</pre>
+
+<p><a href="/jspreadsheet/v4/examples/import-data">See a working example</a></p>
+
+<br>
+
+<h2><a name="Loading-data">Destroying a table</a></h2>
+
+<p>You can destroy the table, all data and events related to an existing table by using the method <em>destroy</em> as shown below.</p>
+
+<pre class="prettyprint linenums" style="padding:20px">
+&lt;script>
+var table = jspreadsheet(document.getElementById('my-spreadsheet'), {
+    csv:'demo.csv',
+    csvHeaders:true,
+    columns:[
+        { width:300 },
+        { width:80 },
+        { width:100 }
+    ]
+});
+
+// If second argument is true will destroy all handlers and you can't create any other instance.
+jexcel.destroy(document.getElementById('my-spreadsheet'), true);
+&lt;/script>
+</pre>
+
+<p>&nbsp;</p>
+
+<h2><a name="Header-titles">Header titles</a></h2>
+
+<p>If you do not define the column title, the default will be a letter starting in A just as any other spreadsheet software. But, if you would like to have custom column names you can use the directive title as in the example below:</p>
+
+<pre class="prettyprint linenums">
+&lt;script>
+jspreadsheet(document.getElementById('myTable'), {
+    data:data,
+    columns:[
+        { title:'Model' },
+        { title:'Price' },
+        { title:'Model' }
+    ]
+});
+&lt;/script>
+</pre>
+
+<br>
+
+<h3><a name="Programmatically-header-updates">Headers from a CSV file</a></h3>
+
+If you are loading your data from a CSV file, you can define the <b>csvHeader:true</b>, so the first row will be used as your column names.
+
+<p><a href="/jspreadsheet/v4/examples/import-data">See a working example</a></p>
+
+<br>
+
+<h3><a name="Programmatically-header-updates">Programmatically header updates</a></h3>
+
+<p>The methods <b>setHeader()</b>, <b>getHeader()</b> and <b>getHeaders()</b> are available for the developer to interact programmatically with the spreadsheet.</p>
+
+<p><a href="/jspreadsheet/v4/examples/headers#Programmatically-header-updates">Working example</a></p>
+
+<br>
+
+<h3><a name="Nested-headers">Nested headers</a></h3>
+
+The nested headers area available in the innitialization through the directive <b>nestedHeaders:[]</b>, and should be use follow:
+
+<pre class="prettyprint linenums">
+&lt;script>
+jspreadsheet(document.getElementById('spreadsheet'), {
+    data:data,
+    columns: [
+        { type: 'autocomplete', title:'Country', width:'300', url:'/jspreadsheet/countries' },
+        { type: 'dropdown', title:'Food', width:'150', source:['Apples','Bananas','Carrots','Oranges','Cheese'] },
+        { type: 'checkbox', title:'Stock', width:'100' },
+    ],
+    nestedHeaders:[
+        [
+            { title:'Supermarket information', colspan:'3' },
+        ],
+        [
+            { title:'Location', colspan:'1' },
+            { title:' Other Information', colspan:'2' }
+        ],
+    ],
+});
+</pre>
+
+<p><a href="/jspreadsheet/v4/examples/headers">See this example in action</a></p>
+
+<p>&nbsp;</p>
+
+<h2><a name="Column-width">Column width</a></h2>
+
+<p>The inital width can be defined in the width property in the column parameter.</p>
+
+<pre class="prettyprint linenums">
+&lt;script>
+jspreadsheet(document.getElementById('myTable'), {
+    data:data,
+    columns:[
+        { title:'Model', width:300 },
+        { title:'Price', width:80 },
+        { title:'Model', width:100 }
+    ]
+});
+&lt;/script>
+</pre>
+
+<br>
+
+<h3><a name="Programmatically-column-width-updates">Programmatically column width updates</a></h3>
+
+<p>The methods setWidth(), getWidth() are available for the developer to update the column width via javascript.</p>
+
+<p><a href="/jspreadsheet/v4/examples/programmatically-updates#setWidth">See this example in action</a></p>
+
+
+<p>&nbsp;</p>
+
+<h2><a name="Row-height">Row height</a></h2>
+
+<p>The inital row height can be defined in the height property include in the rows directive. It is also possible to enabled a resizeble row by using rowResize: true in the initialization.</p>
+
+<pre class="prettyprint linenums">
+&lt;script>
+jspreadsheet(document.getElementById('myTable'), {
+    data:data,
+    rows:{ 3: { height:'500px' }},
+    rowResize: true,
+});
+&lt;/script>
+</pre>
+
+<br>
+
+<h3><a name="Programmatically-row-height-updates">Programmatically row height updates</a></h3>
+
+<p>The methods setHeight(), getHeight() are available for the developer to update the row height via javascript.</p>
+
+<p><a href="/jspreadsheet/v4/examples/programmatically-updates#setHeight">See this example in action</a></p>
+
+<p>&nbsp;</p>
+
+
+<h2><a name="Column-types">Column types</a></h2>
+
+<p>Jspreadsheet has available some extra native column types in addition to the default input text. It means you have extended nice responsive ways to get data into your spreadsheet. In addition to that is available integration methods to facilitate you to bring any custom column to your tables. This makes the Jspreadsheet plugin a very flexible tool to enhance the user experience of your applications.</p>
+
+<p>Jspreadsheet is integrate with jSuites, so it brings some native columns, such as:&nbsp;<em><b>text, numeric, hidden, dropdown, autocomplete, checkbox, radio, calendar, image and color.</b></em></p>
+
+<pre class="prettyprint linenums">
+jspreadsheet(document.getElementById('myTable'), {
+    data:data,
+    columns: [
+        { title:'Model', width:300, type:'text'; },
+        { title:'Price', width:80, type:'numeric' },
+        { title:'Date', width:100, type:'calendar', options: { format:'DD/MM/YYYY' } },
+        { title:'Photo', width:150, type:'image' },
+        { title:'Condition', width:150, type:'dropdown', source:['New','Used'] },
+        { title:'Color', width:80, type:'color' },
+        { title:'Available', width:80, type:'checkbox' },
+    ]
+});
+</pre>
+
+<h3><a name="Calendar-type">Calendar type</a></h3>
+
+<p>When using the calendar column, you can change the behavior behavior of your calendar by sending some extra options as example above. The possible values are:</p>
+
+<pre class="prettyprint linenums">
+options : {
+    // Date format
+    format:'DD/MM/YYYY',
+    // Allow keyboard date entry
+    readonly:0,
+    // Today is default
+    today:0,
+    // Show timepicker
+    time:0,
+    // Show the reset button
+    resetButton:true,
+    // Placeholder
+    placeholder:'',
+    // Translations can be done here
+    months:['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+    weekdays:['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
+    weekdays_short:['S', 'M', 'T', 'W', 'T', 'F', 'S'],
+    // Value
+    value:null,
+    // Events
+    onclose:null,
+    onchange:null,
+    // Fullscreen (this is automatic set for screensize < 800)
+    fullscreen:false,
+};
+</pre>
+
+<p><a href="/jspreadsheet/v4/examples/date-and-datetime-picker">See a working example</a></p>
+
+<br>
+
+<h3><a name="Dropdown-and-autocomplete-type">Dropdown and autocomplete type</a></h3>
+
+<p>There are different ways to work with dropdowns in Jspreadsheet. It is possible to define the parameter <em>source</em> as a simple or key-value array. It is also possible to use the param <em>url</em> to populate your dropdown from an external json format source. In addition to that it is possible to have conditional values. Basically, the values from one dropdown can be conditional to other dropdowns in your table.</p>
+
+<p>You can set the autocomplete dropdown through the initial param <em>autocomplete:true</em> and the multiple picker can be activate by <em>multiple:true</em> property as shown in the following example:</p>
+
+<pre class="prettyprint linenums" style="padding:20px">
+data = [
+    [&#39;Honda&#39;, 1, &#39;Civic&#39;, '4'],
+    [&#39;Peugeot&#39;, 3,&#39;1007&#39;, '2'],
+    [&#39;Smart&#39;, 3,&#39;Cabrio&#39;, '4;5'],
+];
+
+$(&#39;#my&#39;).jspreadsheet({
+jspreadsheet(document.getElementById('spreadsheet'), {
+    data:data,
+    columns: [
+        {
+            type:'dropdown',
+            title:'Region',
+            source:['South East','South West','North','London'],
+            width:'200',
+        },
+        {
+            type:'dropdown',
+            title:'Available in',
+            multiple:true,
+            source:[{id:1, name:'Red'},{id:2, name:'Yellow'},{id:3,name:'Blue'}],
+            width:'200',
+        },
+        {
+            type:'autocomplete',
+            title:'Region',
+            url:'values.json',
+            width:'200',
+        },
+    ]
+});
+</pre>
+
+<p><a href="/jspreadsheet/v4/examples/dropdown-and-autocomplete">See a working example</a></p>
+
+<p>&nbsp;</p>
+
+<h3><a name="Custom-type">Custom type</a></h3>
+
+<p>Jspreadsheet makes possible to extend third party javascript plugins to create your custom columns. Basically to use this feature, you should implement some basic methods such as: openEditor, closeEditor, getValue, setValue as following.</p>
+
+<pre class="prettyprint linenums">
+var data2 = [
+    ['PHP', '14:00'],
+    ['Javascript', '16:30'],
+];
+
+var customColumn = {
+    // Methods
+    closeEditor : function(cell, save) {
+        var value = cell.children[0].value;
+        cell.innerHTML = value;
+        return value;
+    },
+    openEditor : function(cell) {
+        // Create input
+        var element = document.createElement('input');
+        element.value = cell.innerHTML;
+        // Update cell
+        cell.classList.add('editor');
+        cell.innerHTML = '';
+        cell.appendChild(element);
+        $(element).clockpicker({
+            afterHide:function() {
+                setTimeout(function() {
+                    // To avoid double call
+                    if (cell.children[0]) {
+                        myTable.closeEditor(cell, true);
+                    }
+                });
+            }
+        });
+        // Focus on the element
+        element.focus();
+    },
+    getValue : function(cell) {
+        return cell.innerHTML;
+    },
+    setValue : function(cell, value) {
+        cell.innerHTML = value;
+    }
+}
+
+myTable = jspreadsheet(document.getElementById('custom'), {
+    data:data2,
+    columns: [
+        { type: 'text', title:'Course Title', width:300 },
+        { type: 'text', title:'Time', width:100, editor:customColumn },
+     ]
+});
+</pre>
+
+<p><a href="/jspreadsheet/v4/examples/column-types#custom">See a working example</a></p>
+
+<br><br>
+
+<h2><a name="min-data-tables-dimensions">Define a minimum table dimension size.</a></h2>
+
+<p>The follow example will create a data table with a minimum number of ten columns and five rows:<p>
+
+<div id='minExample'></div>
+
+<script>
+data3 = [
+    ['Mazda', 2001, 2000],
+    ['Pegeout', 2010, 5000],
+    ['Honda Fit', 2009, 3000],
+    ['Honda CRV', 2010, 6000],
+];
+
+document.addEventListener('DOMContentLoaded', function() {
+    jspreadsheet(document.getElementById('minExample'), {
+        data:data3,
+        minDimensions:[10,5],
+    });
+});
+</script>
+
+<pre class="prettyprint linenums" style="padding:20px">
+data3 = [
+    ['Mazda', 2001, 2000],
+    ['Pegeout', 2010, 5000],
+    ['Honda Fit', 2009, 3000],
+    ['Honda CRV', 2010, 6000],
+];
+
+jspreadsheet(document.getElementById('minExample'), {
+    data:data3,
+    minDimensions:[10,5],
+});
+</pre>
+
+</div>
+</div>

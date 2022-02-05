@@ -1,0 +1,31 @@
+<div class="section">
+<div class="section-content">
+
+<ul>
+
+<b style="font-size:1.2em;">External Utilities</b>
+
+<li><a href='/jsuites/' target='_blank' title='Javascript web components'>jSuites v3</a></li>
+
+<?php
+$title = "";
+$module = $this->getParam(0);
+foreach ($this->view AS $k => $v) {
+    $url = $this->view[$k]['url'];
+    $url = explode('/', $url);
+    if (isset($url[2])) {
+        $category = $url[1];
+        if ($category != $title) {
+            echo "<br><b style='font-size:1.2em;'>".ucfirst($category)."</b>";
+        }
+        echo "<li><a href='/$module/{$this->view[$k]['url']}' title='{$this->view[$k]['label']}'>{$this->view[$k]['link']}</a></li>";
+        $title = $category;
+    }
+}
+?> 
+
+</ul>
+
+
+</div>
+</div>

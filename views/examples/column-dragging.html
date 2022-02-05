@@ -1,0 +1,101 @@
+<div class="section">
+<div class="section-content">
+
+<div class='breadcrumb'><a href='/jspreadsheet/v4/examples' title='Back to the examples section'>Back to Examples</a></div>
+
+<h1>Column dragging</h1>
+
+<p>By default the column dragging is disabled. You can enabled this feature using the initialization flag: <b>columnDrag: true</b>, as below:</p>
+
+<div id="spreadsheet"></div>
+
+<br><br>
+
+<h3>Source code</h3>
+
+<pre class="prettyprint linenums">
+&#60;html>
+&#60;script src="https://bossanova.uk/jspreadsheet/v4/jexcel.js">&#60;/script>
+&#60;script src="https://jsuites.net/v4/jsuites.js">&#60;/script>
+&#60;link rel="stylesheet" href="https://jsuites.net/v4/jsuites.css" type="text/css" />
+&#60;link rel="stylesheet" href="https://bossanova.uk/jspreadsheet/v4/jexcel.css" type="text/css" />
+
+&#60;div id="spreadsheet">&#60;/div>
+
+&#60;script>
+var data = [
+    ['BR', 'Cheese', 1],
+    ['CA', 'Apples', 0],
+    ['US', 'Carrots', 1],
+    ['GB', 'Oranges', 0],
+];
+
+table = jspreadsheet(document.getElementById('spreadsheet'), {
+    data:data,
+    columns: [
+        {
+            type: 'autocomplete',
+            title: 'Country',
+            width: '300',
+            url: '/jspreadsheet/countries'
+        },
+        {
+            type: 'dropdown',
+            title: 'Food',
+            width: '150',
+            source: ['Apples','Bananas','Carrots','Oranges','Cheese']
+        },
+        {
+            type: 'checkbox',
+            title: 'Stock',
+            width:'100'
+        },
+    ],
+    columnDrag:true,
+});
+&#60;/script>
+&#60;/html>
+</pre>
+
+
+<script>
+var table = null;
+var data = [
+    ['BR', 'Cheese', 1],
+    ['CA', 'Apples', 0],
+    ['US', 'Carrots', 1],
+    ['GB', 'Oranges', 0],
+];
+
+document.addEventListener('DOMContentLoaded', function() {
+    table = jspreadsheet(document.getElementById('spreadsheet'), {
+        data:data,
+        columns: [
+            {
+                type: 'autocomplete',
+                title: 'Country',
+                width: '300',
+                url: '/jspreadsheet/countries'
+            },
+            {
+                type: 'dropdown',
+                title: 'Food',
+                width: '150',
+                source: ['Apples','Bananas','Carrots','Oranges','Cheese']
+            },
+            {
+                type: 'checkbox',
+                title: 'Stock',
+                width:'100'
+            },
+        ],
+        columnDrag:true
+    });
+});
+</script>
+
+<br><br>
+
+
+</div>
+</div>

@@ -1,0 +1,132 @@
+<div class="section">
+<div class="section-content">
+
+<div class='breadcrumb'><a href='/jspreadsheet/v4/examples' title='Back to the examples section'>Back to Examples</a></div>
+
+<h1>Merged cells</h1>
+
+<p>You can merge cells on your spreadsheet in the table initialization or programatically as follow:</p>
+
+<div id="spreadsheet"></div>
+
+<script>
+var table = null;
+var data = [
+    ['Mazda', 2001, 2000, '2006-01-01 12:00:00'],
+    ['Pegeout', 2010, 5000, '2005-01-01 13:00:00'],
+    ['Honda Fit', 2009, 3000, '2004-01-01 14:01:00'],
+    ['Honda CRV', 2010, 6000, '2003-01-01 23:30:00'],
+];
+
+document.addEventListener('DOMContentLoaded', function() {
+    table = jspreadsheet(document.getElementById('spreadsheet'), {
+        data:data,
+        colHeaders: ['Model', 'Year', 'Price', 'Date'],
+        colWidths: [ 300, 80, 100, 150 ],
+        columns: [
+            {
+                type: 'text',
+                width: '300px',
+                title: 'Model',
+            },
+            {
+                type: 'text',
+                width: '80px',
+                title: 'Year',
+            },
+            {
+                type: 'text',
+                width: '100px',
+                title: 'Price',
+            },
+            {
+                type: 'calendar',
+                width: '150px',
+                title: 'Date',
+                options: {
+                    format: 'DD/MM/YYYY HH24:MI',
+                    time: 1,
+                }
+            },
+        ],
+        mergeCells:{
+            A1:[2,1]
+        },
+        minDimensions:[4,10],
+        text:{
+            noRecordsFound: 'No records found',
+        }
+    });
+});
+</script>
+
+<br>
+
+<p>The following methods are available for merge cells management: <i>setMerge, getMerge, removeMerge, destroyMerged</i></p>
+
+
+<button type="button" onclick="table.setMerge('A3', 2, 2);">Merge cell A3 (colspan: 2, rowspan: 2)</button>
+<button type="button" onclick="table.removeMerge('A3');">Destroy merge from A3</button>
+<button type="button" onclick="document.getElementById('console').innerHTML = JSON.stringify(table.getMerge());">Get all merged cells</button>
+<button type="button" onclick="table.destroyMerged();">Destroy all merged</button>
+
+<br><br>
+
+<textarea id='console' style='width:100%;max-width:600px;height:100px;'></textarea>
+
+<br><br>
+
+<h3>Source code</h3>
+
+<pre class="prettyprint linenums">
+&#60;html>
+&#60;script src="https://bossanova.uk/jspreadsheet/v4/jexcel.js">&#60;/script>
+&#60;script src="https://jsuites.net/v4/jsuites.js">&#60;/script>
+&#60;link rel="stylesheet" href="https://bossanova.uk/jspreadsheet/v4/jexcel.css" type="text/css" />
+&#60;link rel="stylesheet" href="https://jsuites.net/v4/jsuites.css" type="text/css" />
+
+&#60;div id="spreadsheet">&#60;/div>
+
+&#60;script>
+var data = [
+    ['Mazda', 2001, 2000, '2006-01-01'],
+    ['Pegeout', 2010, 5000, '2005-01-01'],
+    ['Honda Fit', 2009, 3000, '2004-01-01'],
+    ['Honda CRV', 2010, 6000, '2003-01-01'],
+];
+
+var table = jspreadsheet(document.getElementById('spreadsheet'), {
+    data:data,
+    colHeaders: ['Model', 'Year', 'Price', 'Date'],
+    colWidths: [ 300, 80, 100, 100 ],
+    columns: [
+        { type: 'text' },
+        { type: 'text' },
+        { type: 'text' },
+        { type: 'calendar' },
+    ],
+    mergeCells:{
+        A1:[2,1]
+    },
+    minDimensions:[10,10]
+});
+&#60;/script>
+
+&#60;button type="button" onclick="table.setMerge('A3', 2, 2);">Merge cell A3 (colspan: 2, rowspan: 2)&#60;/button>
+&#60;button type="button" onclick="table.removeMerge('A3');">Destroy merge from A3&#60;/button>
+&#60;button type="button" onclick="document.getElementById('console').innerHTML = JSON.stringify(table.getMerge());">Get all merged cells&#60;/button>
+&#60;button type="button" onclick="table.destroyMerged();">Destroy all merged&#60;/button>
+
+&#60;/html>
+</pre>
+
+
+<style>
+.example td
+{
+    font-size:0.7em;
+}
+</style>
+
+</div>
+</div>

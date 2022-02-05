@@ -1,0 +1,49 @@
+<div class="section">
+<div class="section-content">
+
+<div class='breadcrumb'><a href='/jspreadsheet/v4/examples' title='Back to the examples section'>Back to Examples</a></div>
+
+<h1>Jspreadsheet with Angular</h1>
+
+<p><a href="https://codesandbox.io/s/jexcel-and-angular-cexs1" target="_blank">Click here to see the project running on codesandbox.</a></p>
+
+<br><br>
+
+<h3>Source code</h3>
+
+<pre class="prettyprint linenums linenums">
+import { Component, ViewChild, ElementRef } from "@angular/core";
+import * as jspreadsheet from "jspreadsheet-ce";
+
+@Component({
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.css"]
+})
+export class AppComponent {
+  @ViewChild("spreadsheet") spreadsheet: ElementRef;
+  title = "CodeSandbox";
+
+  ngAfterViewInit() {
+    jspreadsheet(this.spreadsheet.nativeElement, {
+      data: [[]],
+      columns: [
+        { type: "dropdown", width: "100px", source: ["Y", "N"] },
+        { type: "color", width: "100px", render: "square" }
+      ],
+      minDimensions: [10, 10]
+    });
+  }
+}
+</pre>
+
+<br>
+
+<p>NOTE: Make sure to import the jexcel.css in your angular.json</p>
+
+<pre class="prettyprint linenums linenums">
+"styles": ["styles.css","./node_modules/jspreadsheet/dist/jexcel.css"],
+</pre>
+
+</div>
+</div>

@@ -1,0 +1,118 @@
+<div class="section">
+<div class="section-content">
+
+<div class='breadcrumb'><a href='/jspreadsheet/v4/examples' title='Back to the examples section'>Back to Examples</a></div>
+
+<h1>Tabs</h1>
+
+<p>Grouping different spreadsheets in tabs</p>
+
+<div id="spreadsheet"></div>
+
+<br>
+
+<input type="button" value="Add new tab" onclick="add()" class="jbutton dark">
+<input type="button" value="Download selected tab" onclick="download()" class="jbutton dark">
+
+<br><br><br>
+
+<h3>Source code</h3>
+
+<pre class="prettyprint linenums">
+&#60;html>
+&#60;script src="https://bossanova.uk/jspreadsheet/v4/jexcel.js">&#60;/script>
+&#60;script src="https://jsuites.net/v4/jsuites.js">&#60;/script>
+&#60;link rel="stylesheet" href="https://jsuites.net/v4/jsuites.css" type="text/css" />
+&#60;link rel="stylesheet" href="https://bossanova.uk/jspreadsheet/v4/jexcel.css" type="text/css" />
+
+&#60;div id="spreadsheet">&#60;/div>
+
+&#60;input type="button" value="Add new tab" onclick="add()" style="width:150px;">
+&#60;input type="button" value="Download selected tab" onclick="download()" style="width:150px;">
+
+&#60;script>
+/**
+ * Add new worksheet
+ */
+var add = function() {
+    var sheets = [];
+
+    sheets.push({
+        sheetName: prompt('Create a new tab', 'New tab ' + document.getElementById('spreadsheet').jexcel.length),
+        minDimensions:[10,10]
+    });
+
+    jspreadsheet.tabs(document.getElementById('spreadsheet'), sheets);
+}
+
+/**
+ * Download current worksheet
+ */
+var download = function() {
+    // Get selected tab
+    var worksheet = document.getElementById('spreadsheet').children[0].querySelector('.selected').getAttribute('data-spreadsheet');
+    // Download
+    document.getElementById('spreadsheet').jexcel[worksheet].download();
+}
+
+/**
+ * Create worksheet container with two jexcel instances
+ */
+var sheets = [
+    {
+        sheetName: 'Countries',
+        minDimensions:[10,10]
+    },
+    {
+        sheetName: 'Cities',
+        minDimensions:[10,10]
+    }
+];
+
+jspreadsheet.tabs(document.getElementById('spreadsheet'), sheets);
+&#60;/script>
+&#60;/html>
+</pre>
+
+<script>
+/**
+ * Add new worksheet
+ */
+var add = function() {
+    var sheets = [];
+
+    sheets.push({
+        sheetName: prompt('Create a new tab', 'New tab ' + document.getElementById('spreadsheet').jexcel.length),
+        minDimensions:[10,10]
+    });
+
+    jspreadsheet.tabs(document.getElementById('spreadsheet'), sheets);
+}
+
+/**
+ * Download current worksheet
+ */
+var download = function() {
+    // Get selected tab
+    var worksheet = document.getElementById('spreadsheet').children[0].querySelector('.selected').getAttribute('data-spreadsheet');
+    // Download
+    document.getElementById('spreadsheet').jexcel[worksheet].download();
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    var sheets = [
+        {
+            sheetName: 'Countries',
+            minDimensions:[10,10]
+        },
+        {
+            sheetName: 'Cities',
+            minDimensions:[10,10]
+        }
+    ];
+
+    jspreadsheet.tabs(document.getElementById('spreadsheet'), sheets);
+});
+</script>
+</div>
+</div>

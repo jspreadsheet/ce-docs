@@ -1,0 +1,243 @@
+<div class="section">
+<div class="section-content">
+
+<div class='breadcrumb'><a href='/jspreadsheet/v4/examples' title='Back to the examples section'>Back to Examples</a></div>
+
+<h1>Programmatically table updates</h1>
+
+<br>
+
+<div class="section-divisor">
+    <div class="section-number">1</div> <div class="section-title"><h2>Insert, remove and move columns and rows</h2></div>
+</div>
+
+<p>The following example shows how to manage data programmatically in your javascript spreadsheet.</p>
+
+<br>
+
+<div id="spreadsheet1"></div>
+
+<br>
+
+<ol class='example'>
+    <li><a onclick="table1.insertColumn()">Insert a new blank column at the end of the table</a></li>
+    <li><a onclick="table1.insertColumn(5, 0, 1, null);">Insert five new blank columns at the beginning of the table</a></li>
+    <li><a onclick="table1.insertColumn([ '0.99', '1.22', '3.11', '2.21' ]);">Insert a new column with pre-populated values at the end of the table</a></li>
+    <li><a onclick="table1.insertRow()">Insert a new blank row at the end of the table</a></li>
+    <li><a onclick="table1.insertRow([ 'Pears', 10, 0.59, '=B2*C2' ], 1);">Insert a new pre-populated row just after the second row.</a></li>
+    <li><a onclick="table1.insertRow(10);">Create ten rows at the end of the table</a></li>
+    <li><a onclick="table1.deleteRow(0, 1);">Delete the first row</a></li>
+    <li><a onclick="table1.deleteColumn();">Delete the last column</a></li>
+    <li><a onclick="table1.moveRow(3, 0);">Move the forth row to the first position</a></li>
+    <li><a onclick="table1.moveColumn(0, 2);">Move the first column to the third position</a></li>
+</ol>
+
+<br>
+<br>
+
+<h3>Source code</h3>
+
+<pre class="prettyprint linenums">
+&#60;html>
+&#60;script src="https://bossanova.uk/jspreadsheet/v4/jexcel.js">&#60;/script>
+&#60;script src="https://jsuites.net/v4/jsuites.js">&#60;/script>
+&#60;link rel="stylesheet" href="https://bossanova.uk/jspreadsheet/v4/jexcel.css" type="text/css" />
+&#60;link rel="stylesheet" href="https://jsuites.net/v4/jsuites.css" type="text/css" />
+
+&#60;div id="spreadsheet1">&#60;/div>
+
+&#60;script>
+var data1 = [
+    [ 'Cheese', 10, 1.10, '=B1*C1'],
+    [ 'Apples', 30, 0.40, '=B2*C2'],
+    [ 'Carrots', 15, 0.45, '=B3*C3'],
+    [ 'Oranges', 20, 0.49, '=B4*C4'],
+];
+
+var table1 = jspreadsheet(document.getElementById('spreadsheet1'), {
+    data:data1,
+    columns: [
+        {
+            title: 'Product',
+            type: 'autocomplete',
+            source:[ 'Apples','Bananas','Carrots','Oranges','Cheese','Pears' ],
+            width:'300px',
+        },
+        {
+            title: 'Quantity',
+            type: 'number',
+            width:'100px',
+        },
+        {
+            title: 'Price',
+            type: 'number',
+            width:'100px',
+        },
+        {
+            title: 'Total',
+            type: 'number',
+            width:'100px',
+        },
+    ],
+    rowResize: true,
+    columnDrag: true,
+});
+&#60;/script>
+
+&#60;br>
+
+&#60;ol class='example'>
+    &#60;li>&#60;a onclick="table1.insertColumn()">Insert a new blank column at the end of the table&#60;/a>&#60;/li>
+    &#60;li>&#60;a onclick="table1.insertColumn(5, 0, 1, null);">Insert five new blank columns at the beginning of the table&#60;/a>&#60;/li>
+    &#60;li>&#60;a onclick="table1.insertColumn([ '0.99', '1.22', '3.11', '2.21' ]);">Insert a new column with pre-populated values at the end of the table&#60;/a>&#60;/li>
+    &#60;li>&#60;a onclick="table1.insertRow()">Insert a new blank row at the end of the table&#60;/a>&#60;/li>
+    &#60;li>&#60;a onclick="table1.insertRow([ 'Pears', 10, 0.59, '=B2*C2' ], 1);">Insert a new pre-populated row just after the second row&#60;/a>&#60;/li>
+    &#60;li>&#60;a onclick="table1.insertRow(10);">Create ten rows at the end of the table&#60;/a>&#60;/li>
+    &#60;li>&#60;a onclick="table1.deleteRow(0, 1);">Delete the first row&#60;/a>&#60;/li>
+    &#60;li>&#60;a onclick="table1.deleteColumn();">Delete the last column&#60;/a>&#60;/li>
+    &#60;li>&#60;a onclick="table1.moveRow(3, 0);">Move the forth row to the first position&#60;/a>&#60;/li>
+    &#60;li>&#60;a onclick="table1.moveColumn(0, 2);">Move the first column to the third position&#60;/a>&#60;/li>
+&#60;/ol>
+
+&#60;/html>
+</pre>
+
+<br><br>
+
+<div class="section-divisor">
+    <div class="section-number">2</div> <div class="section-title"><h2>Updating column width and row height</h2></div>
+</div>
+
+<p>Update the table width and height properties.</p>
+
+
+<div id="spreadsheet2"></div>
+
+<br><br>
+
+<select id='columnNumber'><option value='0'>Column 1</option><option value='1'>Column 2</option><option value='2'>Column 3</option><option value='3'>Column 4</option></select>
+<input type='button' value='Set column width to 200px' onclick="table2.setWidth(document.getElementById('columnNumber').value, 200)">
+<input type='button' value='Set first row to height 100px' onclick="table2.setHeight(0, 100)">
+
+<br><br><br>
+
+<h3>Source code</h3>
+
+<pre class="prettyprint linenums">
+&#60;html>
+&#60;script src="https://bossanova.uk/jspreadsheet/v4/jexcel.js">&#60;/script>
+&#60;script src="https://jsuites.net/v4/jsuites.js">&#60;/script>
+&#60;link rel="stylesheet" href="https://bossanova.uk/jspreadsheet/v4/jexcel.css" type="text/css" />
+&#60;link rel="stylesheet" href="https://jsuites.net/v4/jsuites.css" type="text/css" />
+
+&#60;div id="spreadsheet1">&#60;/div>
+
+&#60;script>
+var data2 = [
+    [ 'Cheese', 10, 1.10, '=B1*C1'],
+    [ 'Apples', 30, 0.40, '=B2*C2'],
+    [ 'Carrots', 15, 0.45, '=B3*C3'],
+    [ 'Oranges', 20, 0.49, '=B4*C4'],
+];
+
+var table2 = jspreadsheet(document.getElementById('spreadsheet2'), {
+    data:data2,
+    colHeaders: [ 'Product', 'Quantity', 'Price', 'Total' ],
+    colWidths: [ 300, 100, 100, 100 ],
+    columns: [
+        { type: 'autocomplete', source:[ 'Apples','Bananas','Carrots','Oranges','Cheese','Pears' ] },
+        { type: 'number' },
+        { type: 'number' },
+        { type: 'number' },
+    ],
+    rowResize:true,
+});
+&#60;/script>
+
+&#60;select id='columnNumber'>
+&#60;option value='0'>Column 1&#60;/option>
+&#60;option value='1'>Column 2&#60;/option>
+&#60;option value='2'>Column 3&#60;/option>
+&#60;option value='3'>Column 4&#60;/option>
+&#60;/select>
+
+&#60;input type='button' value='Set column width to 200px' onclick="table2.setWidth(document.getElementById('columnNumber').value, 200)">
+&#60;input type='button' value='Set first row to height 100px' onclick="table2.setHeight(0, 100)">
+
+&#60;/html>
+</pre>
+
+
+<script>
+var table1 = null;
+var table2 = null;
+var data1 = [
+    [ 'Cheese', 10, 1.10, '=B1*C1'],
+    [ 'Apples', 30, 0.40, '=B2*C2'],
+    [ 'Carrots', 15, 0.45, '=B3*C3'],
+    [ 'Oranges', 20, 0.49, '=B4*C4'],
+];
+var data2 = [
+    [ 'Cheese', 10, 1.10, '=B1*C1'],
+    [ 'Apples', 30, 0.40, '=B2*C2'],
+    [ 'Carrots', 15, 0.45, '=B3*C3'],
+    [ 'Oranges', 20, 0.49, '=B4*C4'],
+];
+
+document.addEventListener('DOMContentLoaded', function() {
+    table1 = jspreadsheet(document.getElementById('spreadsheet1'), {
+        data:data1,
+        columns: [
+            {
+                title: 'Product',
+                type: 'autocomplete',
+                source:[ 'Apples','Bananas','Carrots','Oranges','Cheese','Pears' ],
+                width:'300px',
+            },
+            {
+                title: 'Quantity',
+                type: 'number',
+                width:'100px',
+            },
+            {
+                title: 'Price',
+                type: 'number',
+                width:'100px',
+            },
+            {
+                title: 'Total',
+                type: 'number',
+                width:'100px',
+            },
+        ],
+        rowResize: true,
+        columnDrag: true,
+    });
+
+    table2 = jspreadsheet(document.getElementById('spreadsheet2'), {
+        data:data2,
+        colHeaders: [ 'Product', 'Quantity', 'Price', 'Total' ],
+        colWidths: [ 300, 100, 100, 100 ],
+        columns: [
+            { type: 'autocomplete', source:[ 'Apples','Bananas','Carrots','Oranges','Cheese','Pears' ] },
+            { type: 'number' },
+            { type: 'number' },
+            { type: 'number' },
+        ],
+        rowResize:true,
+        columnDrag: true,
+    });
+});
+</script>
+
+
+
+<style>
+.example a {
+    text-decoration:underline;
+    cursor:pointer;
+}
+</style>
+
+</div>
+</div>

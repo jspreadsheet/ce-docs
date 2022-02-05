@@ -1,0 +1,96 @@
+<div class="section">
+<div class="section-content">
+
+<div class='breadcrumb'><a href='/jspreadsheet/v4/examples' title='Back to the examples section'>Back to Examples</a></div>
+
+<h1>Comments on your javascript spreadsheet</h1>
+
+<p>The javascript spreadsheet plugin allows the user to set custom comments for each individual cells. By allowComments in the initialization, the user will be able to add comments in the rigth click contextMenu.</p>
+
+<div id="spreadsheet"></div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var data1 = [
+        ['US', 'Cheese', '2019-02-12'],
+        ['CA', 'Apples', '2019-03-01'],
+        ['CA', 'Carrots', '2018-11-10'],
+        ['BR', 'Oranges', '2019-01-12'],
+    ];
+
+    mySpreadsheet = jspreadsheet(document.getElementById('spreadsheet'), {
+        data:data1,
+        columns: [
+            { type: 'dropdown', url:'/jspreadsheet/countries', width:200, },
+            { type: 'text', width:200, },
+            { type: 'calendar', width:200, }
+         ],
+         allowComments:true,
+    });
+});
+
+</script>
+
+<br><br>
+
+<h2>Manage cell comments programmatically</h2>
+
+<p>To apply comments via javascript, you can use the methods setComments or getComments, as follow:</p>
+
+<button type="button" onclick="mySpreadsheet.setComments('A1', 'This is the comments from A1');" style="width:220px;">Set A1 comments</button>
+<button type="button" onclick="alert(mySpreadsheet.getComments('A1'));" style="width:220px;">Get A1 comments</button>
+<button type="button" onclick="mySpreadsheet.setComments('A1', '');" style="width:220px;">Reset A1 comments</button>
+
+
+<br><br>
+
+<h3>Source code</h3>
+
+<pre class="prettyprint linenums">
+&#60;html>
+&#60;script src="https://bossanova.uk/jspreadsheet/v4/jexcel.js">&#60;/script>
+&#60;link rel="stylesheet" href="https://bossanova.uk/jspreadsheet/v4/jexcel.css" type="text/css" />
+
+&#60;script src="https://jsuites.net/v4/jsuites.js">&#60;/script>
+&#60;link rel="stylesheet" href="https://jsuites.net/v4/jsuites.css" type="text/css" />
+
+&#60;div id="spreadsheet">&#60;/div>
+
+&#60;script>
+var data1 = [
+    ['US', 'Cheese', '2019-02-12'],
+    ['CA', 'Apples', '2019-03-01'],
+    ['CA', 'Carrots', '2018-11-10'],
+    ['BR', 'Oranges', '2019-01-12'],
+];
+
+mySpreadsheet = jspreadsheet(document.getElementById('spreadsheet'), {
+    data:data1,
+    columns: [
+        {
+            type: 'dropdown',
+            url:'https://bossanova.uk/jspreadsheet/v4/countries',
+            width:200,
+        },
+        {
+            type: 'text',
+            width:200,
+        },
+        {
+            type: 'calendar',
+            width:200,
+        }
+     ],
+     allowComments:true,
+});
+&#60;/script>
+
+&#60;button type="button" onclick="mySpreadsheet.setComments('A1', 'This is the comments from A1');" style="width:220px;">Set A1 comments&#60;/button>
+&#60;button type="button" onclick="alert(mySpreadsheet.getComments('A1'));" style="width:220px;">Get A1 comments&#60;/button>
+&#60;button type="button" onclick="mySpreadsheet.setComments('A1', '');" style="width:220px;">Reset A1 comments&#60;/button>
+
+&#60;/html>
+</pre>
+
+</div>
+</div>

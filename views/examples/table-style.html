@@ -1,0 +1,122 @@
+<div class="section">
+<div class="section-content">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
+
+<div class='breadcrumb'><a href='/jspreadsheet/v4/examples' title='Back to the examples section'>Back to Examples</a></div>
+
+<h1>Custom javascript spreasheet style</h1>
+
+
+
+
+<h2><a name='1'>How to apply style to your table</a></h2>
+
+<p>You can define the CSS for specific columns during the initialization, or through programmatically javascript calls.</p>
+
+<div id="spreasheet1"></div>
+
+<p>But, after the initialization is still possible to manage the cell style programmatically using the method getStyle or setStyle.</p>
+
+<button type="button" onclick="table.setStyle('A2', 'background-color', 'yellow');">Set A2 background</button>
+<button type="button" onclick="table.setStyle({ A3:'font-weight: bold; color:red;', B3:'background-color: yellow;', C3:'text-decoration: underline;', A4:'text-align:left;' });">Change A3, B3, C3, A4 style</button>
+<button type="button" onclick="document.getElementById('console').innerHTML = table.getStyle('A1');">Get A1 style</button>
+<button type="button" onclick="document.getElementById('console').innerHTML = JSON.stringify(table.getStyle());">Get the table style</button>
+
+<br><br>
+
+<textarea id='console' style='width:100%;max-width:600px;height:100px;'></textarea>
+
+<br><br>
+
+<h3>Source code</h3>
+
+<pre class="prettyprint linenums">
+&#60;script src="https://bossanova.uk/jspreadsheet/v4/jexcel.js">&#60;/script>
+&#60;script src="https://jsuites.net/v4/jsuites.js">&#60;/script>
+&#60;link rel="stylesheet" href="https://bossanova.uk/jspreadsheet/v4/jexcel.css" type="text/css" />
+&#60;link rel="stylesheet" href="https://jsuites.net/v4/jsuites.css" type="text/css" />
+
+&#60;div id="spreadsheet">&#60;/div>
+
+&#60;script>
+var data1 = [
+    ['US', 'Cheese', 'Yes', '2019-02-12'],
+    ['CA;US;UK', 'Apples', 'Yes', '2019-03-01'],
+    ['CA;BR', 'Carrots', 'No', '2018-11-10'],
+    ['BR', 'Oranges', 'Yes', '2019-01-12'],
+];
+var table = jspreadsheet(document.getElementById('spreasheet1'), {
+    data:data1,
+    columns: [
+        {
+            type: 'dropdown',
+            title: 'Product Origin',
+            width: 300,
+            url: '/jspreadsheet/countries', // Remote source for your dropdown
+            autocomplete: true,
+            multiple: true
+        },
+        {
+            type: 'text',
+            title: 'Description',
+            width: 200
+        },
+        {
+            type: 'dropdown',
+            title: 'Stock',
+            width: 100 ,
+            source: ['No','Yes']
+        },
+        {
+            type: 'calendar',
+            title: 'Best before',
+            width: 100
+        },
+    ],
+    style: {
+        A1:'background-color: orange;',
+        B1:'background-color: orange;',
+    },
+});
+&#60;/script>
+
+&#60;p>&#60;textarea id='console' style='width:100%;max-width:600px;height:100px;'>&#60;/textarea>&#60;/p>
+
+&#60;button type="button" onclick="table.setStyle('A2', 'background-color', 'yellow');">Set A2 background&#60;/button>
+&#60;button type="button" onclick="table.setStyle({ A3:'font-weight: bold; color:red;', B3:'background-color: yellow;', C3:'text-decoration: underline;', A4:'text-align:left;' });">Change A3, B3, C3, A4 style&#60;/button>
+&#60;button type="button" onclick="document.getElementById('console').innerHTML = table.getStyle('A1');">Get A1 style&#60;/button>
+&#60;button type="button" onclick="document.getElementById('console').innerHTML = JSON.stringify(table.getStyle());">Get the table style&#60;/button>
+&#60;/html>
+</pre>
+
+<script>
+var data1 = [
+    ['US', 'Cheese', 'Yes', '2019-02-12'],
+    ['CA;US;UK', 'Apples', 'Yes', '2019-03-01'],
+    ['CA;BR', 'Carrots', 'No', '2018-11-10'],
+    ['BR', 'Oranges', 'Yes', '2019-01-12'],
+];
+
+var table = null;
+
+document.addEventListener('DOMContentLoaded', function() {
+    table = jspreadsheet(document.getElementById('spreasheet1'), {
+        data:data1,
+        columns: [
+            { type:'dropdown', title:'Product Origin', width:300, url:'/jspreadsheet/countries', autocomplete:true, multiple:true }, // Remote source for your dropdown
+            { type:'text', title:'Description', width:200 },
+            { type:'dropdown', title:'Stock', width:100 , source:['No','Yes'] },
+            { type:'calendar', title:'Best before', width:100 },
+        ],
+        style: {
+            A1:'background-color: orange;',
+            B1:'background-color: orange;',
+        },
+    });
+
+});
+</script>
+
+</div>
+</div>

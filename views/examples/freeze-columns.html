@@ -1,0 +1,53 @@
+<div class="section">
+<div class="section-content">
+
+<div class='breadcrumb'><a href='/jspreadsheet/v4/examples' title='Back to the examples section'>Back to Examples</a></div>
+
+<h1>Freeze columns</h1>
+
+<p>Define the number of freeze columns by using the freezeColumn directive with tableOverflow as follow</p>
+
+<div id="spreadsheet"></div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    test = jspreadsheet(document.getElementById('spreadsheet'), {
+        data: null,
+        minDimensions: [20,4000],
+        tableOverflow: true,
+        lazyLoading: true,
+        tableWidth: '800px',
+        freezeColumns: 2
+    });
+});
+
+</script>
+
+<br><br>
+
+<h3>Source code</h3>
+
+<pre class="prettyprint linenums linenums">
+&#60;html>
+&#60;script src="https://bossanova.uk/jspreadsheet/v4/jexcel.js">&#60;/script>
+&#60;script src="https://jsuites.net/v4/jsuites.js">&#60;/script>
+&#60;link rel="stylesheet" href="https://jsuites.net/v4/jsuites.css" type="text/css" />
+&#60;link rel="stylesheet" href="https://bossanova.uk/jspreadsheet/v4/jexcel.css" type="text/css" />
+
+&#60;div id="spreadsheet">&#60;/div>
+
+&#60;script>
+jspreadsheet(document.getElementById('spreadsheet'), {
+    data: null,
+    minDimensions: [20,50000],
+    tableOverflow: true,
+    lazyLoading: true,
+    tableWidth: '600px',
+    freezeColumns: 2
+});
+&#60;/script>
+&#60;/html>
+</pre>
+
+</div>
+</div>

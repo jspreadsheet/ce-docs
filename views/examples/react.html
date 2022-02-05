@@ -1,0 +1,92 @@
+<div class="section">
+<div class="section-content">
+
+<div class='breadcrumb'><a href='/jspreadsheet/v4/examples' title='Back to the examples section'>Back to Examples</a></div>
+
+<h1>The Javascript spreadsheet with React</h1>
+
+<br><br>
+
+<h3>1. Integrating Jspreadsheet with React</h3>
+
+<p><a href="https://codesandbox.io/s/jexcel-and-react-k7nf0">React with Jspreadsheet sample project</a></p>
+
+<br><br>
+
+<h3>2. React component implementation</h3>
+
+<pre class="prettyprint linenums">
+class Jspreadsheet extends React.Component {
+    constructor(props) {
+        super(props);
+        this.options = props.options;
+        this.wrapper = React.createRef();
+    }
+
+    componentDidMount = function() {
+        this.el = jspreadsheet(this.wrapper.current, this.options);
+    }
+
+    addRow = function() {
+        this.el.insertRow();
+    }
+
+    render() {
+        return (
+            &#60;div>
+                &#60;div>&#60;/div>&#60;br/>&#60;br/>
+                &#60;input type='button' value='Add new row' onClick={() => this.addRow()}>&#60;/input>
+            &#60;/div>
+        );
+    }
+}
+
+var options = {
+    data:[[]],
+    minDimensions:[10,10],
+};
+
+ReactDOM.render(&#60;Jspreadsheet options={options} />, document.getElementById('spreadsheet'))
+</pre>
+
+<br><br>
+
+<h3>3. Jspreadsheet implementation with react component with hooks</h3>
+
+<p><a href='https://codesandbox.io/s/jspreadsheet-ce-and-react-dzpqj'>Working example</a></p>
+
+<pre class="prettyprint linenums">
+import React, { useRef, useEffect } from "react";
+import jspreadsheet from "jspreadsheet-ce";
+
+import "../node_modules/jspreadsheet-ce/dist/jexcel.css";
+
+export default function App() {
+  const jRef = useRef(null);
+  const options = {
+    data: [[]],
+    minDimensions: [10, 10]
+  };
+
+  useEffect(() => {
+    if (!jRef.current.jspreadsheet) {
+      jspreadsheet(jRef.current, options);
+    }
+  }, [options]);
+
+  const addRow = () => {
+    jRef.current.jexcel.insertRow();
+  };
+
+  return (
+    &#60;div>
+      &#60;div ref={jRef} />
+      &#60;br />
+      &#60;input type="button" onClick={addRow} value="Add new row" />
+    &#60;/div>
+  );
+}
+</pre>
+
+</div>
+</div>

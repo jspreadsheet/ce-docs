@@ -1,0 +1,80 @@
+<div class="section">
+<div class="section-content">
+
+<div class='breadcrumb'><a href='/jspreadsheet/v4/examples' title='Back to the examples section'>Back to Examples</a></div>
+
+<h1>Javascript spreadsheet with search and pagination</h1>
+
+<p>The following example shows how to create a javascript spreadsheet instance with a design similar to datatables jquery plugin.</p>
+
+<div id="spreadsheet"></div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    test = jspreadsheet(document.getElementById('spreadsheet'), {
+        csv:'/jspreadsheet/demo.csv',
+        csvHeaders:true,
+        search:true,
+        pagination:10,
+        paginationOptions:[10,25,50,100],
+        columns: [
+            { type:'text', width:80 },
+            { type:'text', width:200 },
+            { type:'text', width:100 },
+            { type:'text', width:200 },
+            { type:'dropdown', width:100, source:[{ id:1, name:'Male'}, { id:2, name:'Female'}] },
+         ]
+    });
+});
+</script>
+
+<br>
+
+<?php if (! isset($_GET['default'])) { ?>
+    <link rel="stylesheet" href="/jspreadsheet/v4/jexcel.datatables.css" type="text/css" />
+    <p><a href="/jspreadsheet/v4/examples/datatables?default=1">Back to the default skin</a></p>
+<?php } else { ?>
+    <p>NOTE: You can customize the layout of the table:</p>
+    <p><a href="/jspreadsheet/v4/examples/datatables">Click here to change the skin of jspreadsheet to render as the datatables jquery plugin.</a></p>
+<?php } ?>
+
+<br><br>
+
+<h3>Source code</h3>
+
+<pre class="prettyprint linenums">
+&#60;html>
+&#60;script src="https://bossanova.uk/jspreadsheet/v4/jexcel.js">&#60;/script>
+&#60;script src="https://jsuites.net/v4/jsuites.js">&#60;/script>
+&#60;link rel="stylesheet" href="https://bossanova.uk/jspreadsheet/v4/jexcel.css" type="text/css" />
+&#60;link rel="stylesheet" href="https://jsuites.net/v4/jsuites.css" type="text/css" />
+
+<?php if (! isset($_GET['default'])) : ?>
+&#60;link rel="stylesheet" href="https://bossanova.uk/jspreadsheet/v4/jexcel.datatables.css" type="text/css" />
+<?php endif; ?>
+
+&#60;div id="spreadsheet">&#60;/div>
+
+&#60;script>
+jspreadsheet(document.getElementById('spreadsheet'), {
+    csv:'https://bossanova.uk/jspreadsheet/v4/demo.csv',
+    csvHeaders:true,
+    search:true,
+    pagination:10,
+    columns: [
+        { type:'text', width:300 },
+        { type:'text', width:200 },
+        { type:'text', width:100 },
+        { type:'text', width:100 },
+        { type:'text', width:100 },
+     ]
+});
+&#60;script>
+
+&#60;/script>
+&#60;/html>
+</pre>
+
+
+</div>
+</div>

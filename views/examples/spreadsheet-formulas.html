@@ -1,0 +1,184 @@
+<div class="section">
+<div class="section-content">
+
+<div class='breadcrumb'><a href='/jspreadsheet/v4/examples' title='Back to the examples section'>Back to Examples</a></div>
+
+<h1>Adding formulas on your online spreadsheet</h1>
+
+<br>
+
+<div class="section-divisor">
+    <div class="section-number">1</div> <div class="section-title"><h2>Simple spreadsheet-like formula usage</h2></div>
+</div>
+
+<p>The example below shows how to use spreadsheet like formulas on your javascript table spreadsheet.</p><br>
+
+<div id="spreadsheet"></div>
+
+<br><br>
+
+<h3>Source code</h3>
+
+<pre class="prettyprint linenums">
+&#60;html>
+&#60;script src="https://bossanova.uk/jspreadsheet/v4/jexcel.js">&#60;/script>
+&#60;script src="https://jsuites.net/v4/jsuites.js">&#60;/script>
+&#60;link rel="stylesheet" href="https://bossanova.uk/jspreadsheet/v4/jexcel.css" type="text/css" />
+&#60;link rel="stylesheet" href="https://jsuites.net/v4/jsuites.css" type="text/css" />
+
+&#60;div id="spreadsheet">&#60;/div>
+
+&#60;script>
+var data = [
+    [ 'Crayons Crayola only (No Rose Art)', 2, 5.01, '=B1*C1' ],
+    [ 'Colored Pencils Crayola only', 2, 4.41, '=B2*C2' ],
+    [ 'Expo Dry-erase Markers Wide', 4, 3.00, '=B3*C3' ],
+    [ 'Index Cards Unlined', 3, 6.00, '=B4*C4' ],
+    [ 'Tissues', 10, '1.90', '=B5*C5' ],
+    [ 'Ziploc Sandwich-size Bags', 5, 1.00, '=B6*C6' ],
+    [ 'Thin Markers Crayola only', 2, 3.00, '=B7*C7' ],
+    [ 'Highlighter', 4, 1.20, '=B8*C8' ],
+    [ 'Total', '=SUM(B1:B8)', '=ROUND(SUM(C1:C8), 2)', '=SUM(D1:D8)' ],
+];
+
+jspreadsheet(document.getElementById('spreadsheet'), {
+    data:data,
+    columns: [
+        { type: 'text', title:'Product', width:'300' },
+        { type: 'text', title:'Qtd', width:'80' },
+        { type: 'text', title:'Price', width:'100', mask:'#.##,00', decimal:',' },
+        { type: 'text', title:'Total', width:'100' },
+    ],
+    updateTable:function(instance, cell, col, row, val, label, cellName) {
+        if (cell.innerHTML == 'Total') {
+            cell.parentNode.style.backgroundColor = '#fffaa3';
+        }
+
+        if (col == 3) {
+            if (parseFloat(label) > 10) {
+                cell.style.color = 'red';
+            }  else {
+                cell.style.color = 'green';
+            }
+        }
+    },
+    columnSorting:false,
+});
+&#60;/script>
+&#60;/html>
+</pre>
+
+<br>
+
+<div class="section-divisor">
+    <div class="section-number">2</div> <div class="section-title"><h2>Creating Custom formulas</h2></div>
+</div>
+
+<p>You can declare custom javascript methods and use in your tables as the example below.</p><br>
+
+<div id="spreadsheet1"></div>
+
+<br><br>
+
+<h3>Source code</h3>
+
+<pre class="prettyprint linenums">
+&#60;html>
+&#60;script src="https://bossanova.uk/jspreadsheet/v4/jexcel.js">&#60;/script>
+&#60;script src="https://jsuites.net/v4/jsuites.js">&#60;/script>
+&#60;link rel="stylesheet" href="https://bossanova.uk/jspreadsheet/v4/jexcel.css" type="text/css" />
+&#60;link rel="stylesheet" href="https://jsuites.net/v4/jsuites.css" type="text/css" />
+
+&#60;div id="spreadsheet1">&#60;/div>
+
+&#60;script>
+var COLORIZE = function(v) {
+    v = '&#60;span style="color:' + v + '">' + v.toUpperCase() + '&#60;/span>';
+    return v;
+}
+
+var data1 = [
+    [ 'red', '=COLORIZE(A1)' ],
+    [ 'green', '=COLORIZE(A2)' ],
+    [ 'blue', '=COLORIZE(A3)' ],
+];
+
+jspreadsheet(document.getElementById('spreadsheet1'), {
+    data:data1,
+    stripHTML: false,
+    columns: [
+        { type: 'text', width:'300' },
+        { type: 'text', width:'200' },
+    ]
+});
+&#60;/script>
+&#60;/html>
+</pre>
+
+<script>
+var COLORIZE = function(v) {
+    v = '<span style="color:' + v + '">' + v.toUpperCase() + '</span>';
+    return v;
+}
+
+var data = [
+    [ 'Crayons Crayola only (No Rose Art)', 2, 5.01, '=B1*C1' ],
+    [ 'Colored Pencils Crayola only', 2, 4.41, '=B2*C2' ],
+    [ 'Expo Dry-erase Markers Wide', 4, 3.00, '=B3*C3' ],
+    [ 'Index Cards Unlined', 3, 6.00, '=B4*C4' ],
+    [ 'Tissues', 10, 1.90, '=B5*C5' ],
+    [ 'Ziploc Sandwich-size Bags', 5, 1.00, '=B6*C6' ],
+    [ 'Thin Markers Crayola only', 2, 3.00, '=B7*C7' ],
+    [ 'Highlighter', 4, 1.20, '=B8*C8' ],
+    [ 'Total', '=SUM(B1:B8)', '=ROUND(SUM(C1:C8), 2)', '=SUM(D1:D8)' ],
+];
+
+var data1 = [
+    [ 'red', '=COLORIZE(A1)' ],
+    [ 'green', '=COLORIZE(A2)' ],
+    [ 'blue', '=COLORIZE(A3)' ],
+];
+
+document.addEventListener('DOMContentLoaded', function() {
+    test1 = jspreadsheet(document.getElementById('spreadsheet'), {
+        data:data,
+        columns: [
+            { type: 'text', title:'Product', width:'300' },
+            { type: 'text', title:'Qtd', width:'80' },
+            { type: 'text', title:'Price', width:'100', mask:'$ #.##,00', decimal:',' },
+            { type: 'text', title:'Total', width:'100' },
+        ],
+        copyCompatibility:true,
+        updateTable:function(instance, cell, col, row, val, label, cellName) {
+            if (cell.innerHTML == 'Total') {
+                cell.parentNode.style.backgroundColor = '#fffaa3';
+            }
+
+            if (col == 3) {
+                if (parseFloat(label) > 10) {
+                    cell.style.color = 'red';
+                }  else {
+                    cell.style.color = 'green';
+                }
+            }
+        },
+        columnSorting:false,
+        copyCompatibility:true,
+    });
+    
+    jspreadsheet(document.getElementById('spreadsheet1'), {
+        data:data1,
+        stripHTML: false,
+        columns: [
+            { type: 'text', width:'300' },
+            { type: 'text', width:'200' },
+        ]
+    });
+});
+
+
+</script>
+
+
+</div>
+</div>

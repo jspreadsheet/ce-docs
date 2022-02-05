@@ -1,0 +1,91 @@
+<div class='breadcrumb'><a href='/jspreadsheet/v4/examples' title='Back to the examples section'>Back to Examples</a></div>
+
+<h1>Create custom CSS for your javascript spreadsheet</h1>
+
+<p>The following example shows a CSS addon to change the core layout of your jquery tables.</p>
+
+<br>
+
+<?php if (isset($_GET['layout']) && $_GET['layout'] == 'green') { ?>
+    <h2>Green borders and corners jquery spreasheet</h2>
+    <link rel="stylesheet" type="text/css" href="/components/jspreadsheet/dist/css/jquery.jexcel.green.css" />
+    <a href='/jspreadsheet/examples/a-custom-table-design'>Bootstrap-like jquery spreadsheet example</a>
+<?php } else { ?>
+    <h2>Bootstrap-like jquery spreadsheet.</h2>
+    <link rel="stylesheet" type="text/css" href="/components/jspreadsheet/dist/css/jquery.jexcel.bootstrap.css" />
+    <a href='/jspreadsheet/examples/a-custom-table-design?layout=green'>Green borders and corners jquery spreasheet example</a>
+<?php } ?>
+
+<p>Your jquery table can be customized by including an additional addon CSS. If you have created a nice design, please share with us.</p>
+
+<br>
+
+<div id="my"></div>
+
+<script>
+data = [
+    ['BR', 'Cheese', 1, 1900.01],
+    ['CA', 'Apples', 0, 1200.21],
+    ['US', 'Carrots', 1, 400.34],
+    ['GB', 'Oranges', 0, 900.43],
+];
+
+$('#my').jspreadsheet({
+    data:data,
+    colHeaders: ['Country', 'Food', 'Stock', 'Price'],
+    colWidths: [ 300, 100, 100, 100 ],
+    colAlignments: [ 'left', 'left', 'left', 'left' ],
+    columns: [
+        { type: 'autocomplete', url:'/jspreadsheet/countries' },
+        { type: 'autocomplete', source:['Apples','Bananas','Carrots','Oranges','Cheese'] },
+        { type: 'checkbox' },
+        { type: 'number' },
+    ]
+});
+</script>
+
+<br><br>
+
+<h3>Source code</h3>
+
+<pre class="prettyprint linenums">
+&#60;html>
+&#60;script src="https://bossanova.uk/jspreadsheet/v4/jexcel.js">&#60;/script>
+&#60;script src="https://jsuites.net/v4/jsuites.js">&#60;/script>
+&#60;link rel="stylesheet" href="https://bossanova.uk/jspreadsheet/v4/jexcel.css" type="text/css" />
+&#60;link rel="stylesheet" href="https://jsuites.net/v4/jsuites.css" type="text/css" />
+
+&#60;!-- Optional CSS addon -->
+<?php if (isset($_GET['layout']) && $_GET['layout'] == 'green') { ?>
+&#60;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jspreadsheet/2.0.0/css/jquery.jexcel.green.min.css" type="text/css" />
+<?php } else { ?>
+&#60;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jspreadsheet/2.0.0/css/jquery.jexcel.bootstrap.min.css" type="text/css" />
+<?php } ?>
+
+&#60;div id="my">&#60;/div>
+
+&#60;script>
+data = [
+    ['BR', 'Cheese', 1, 1900.01],
+    ['CA', 'Apples', 0, 1200.21],
+    ['US', 'Carrots', 1, 400.34],
+    ['GB', 'Oranges', 0, 900.43],
+];
+
+$('#my').jspreadsheet({
+    data:data,
+    colHeaders: ['Country', 'Food', 'Stock', 'Price'],
+    colWidths: [ 300, 100, 100, 100 ],
+    colAlignments: [ 'left', 'left', 'left', 'left' ],
+    columns: [
+        { type: 'autocomplete', url:'/jspreadsheet/countries' },
+        { type: 'autocomplete', source:['Apples','Bananas','Carrots','Oranges','Cheese'] },
+        { type: 'checkbox' },
+        { type: 'number' },
+    ]
+});
+&#60;/script>
+&#60;/html>
+</pre>
+
+

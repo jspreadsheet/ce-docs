@@ -1,0 +1,57 @@
+<div class="section">
+<div class="section-content">
+
+<div class='breadcrumb'><a href='/jspreadsheet/v4/examples' title='Back to the examples section'>Back to Examples</a></div>
+
+<h1>Jquery</h1>
+
+<p>Creating a Jspreadsheet javascript instance using jQuery</p>
+
+<div id="spreadsheet"></div>
+
+<br><br>
+
+<input type="button" value="Add new row" onclick="$('#spreadsheet').jspreadsheet('insertRow')">
+<input type="button" value="Add new col" onclick="$('#spreadsheet').jspreadsheet('insertColumn')">
+
+<br><br><br>
+
+<h3>Source code</h3>
+
+<pre class="prettyprint linenums">
+&#60;html>
+&#60;script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js">&#60;/script>
+
+&#60;script src="https://bossanova.uk/jspreadsheet/v4/jexcel.js">&#60;/script>
+&#60;link rel="stylesheet" href="https://bossanova.uk/jspreadsheet/v4/jexcel.css" type="text/css" />
+&#60;script src="https://jsuites.net/v4/jsuites.js">&#60;/script>
+&#60;link rel="stylesheet" href="https://jsuites.net/v4/jsuites.css" type="text/css" />
+
+&#60;div id="spreadsheet">&#60;/div>
+
+&#60;input type="button" value="Add new row" onclick="$('#spreadsheet').jspreadsheet('insertRow')" />
+
+&#60;script>
+var options = {
+    minDimensions:[10,10],
+    tableOverflow:true,
+}
+
+$('#spreadsheet').jspreadsheet(options); 
+&#60;/script>
+&#60;/html>
+</pre>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var options = {
+        minDimensions:[10,10],
+        tableOverflow:true,
+    }
+
+    $('#spreadsheet').jexcel(options);
+});
+</script>
+
+</div>
+</div>

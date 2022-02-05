@@ -1,0 +1,114 @@
+<div class="section">
+<div class="section-content">
+
+<div class='breadcrumb'><a href='/jspreadsheet/examples#more' alt='Back to the examples section'>Back to Examples</a></div>
+
+<h1>Readonly columns and cells</h1>
+
+<p>Setting a readonly the whole column or a single specific cell.</p>
+
+<div id="spreadsheet"></div>
+
+<script>
+var data = [
+    ['Mazda', 2001, 2000, 1],
+    ['Pegeout', 2010, 5000, 1],
+    ['Honda Fit', 2009, 3000, 1],
+    ['Honda CRV', 2010, 6000, 0],
+];
+
+document.addEventListener('DOMContentLoaded', function() {
+    jspreadsheet(document.getElementById('spreadsheet'), {
+        data: data,
+        columns: [
+            {
+                type: 'text',
+                title:'Description',
+                width:'200px',
+                readOnly:true,
+            },
+            {
+                type: 'text',
+                title:'Year',
+                width:'200px'
+            },
+            {
+                type: 'text',
+                title:'Price',
+                width:'100px',
+                mask:'#.##',
+            },
+            {
+                type: 'checkbox',
+                title:'Automatic',
+                width:'100px'
+            },
+        ],
+        updateTable: function(el, cell, x, y, source, value, id) {
+            if (x == 2 && y == 2) {
+                cell.classList.add('readonly');
+            }
+        } 
+    });
+});
+</script>
+
+<br><br>
+
+<h2>Source code</h2>
+
+<pre class="prettyprint linenums">
+&#60;script src="https://bossanova.uk/jspreadsheet/v4/jexcel.js">&#60;/script>
+&#60;script src="https://jsuites.net/v4/jsuites.js">&#60;/script>
+&#60;link rel="stylesheet" href="https://bossanova.uk/jspreadsheet/v4/jexcel.css" type="text/css" />
+&#60;link rel="stylesheet" href="https://jsuites.net/v4/jsuites.css" type="text/css" />
+
+&#60;div id="spreadsheet">&#60;/div>
+
+&#60;script>
+var data = [
+    ['Mazda', 2001, 2000, 1],
+    ['Pegeout', 2010, 5000, 1],
+    ['Honda Fit', 2009, 3000, 1],
+    ['Honda CRV', 2010, 6000, 0],
+];
+
+jspreadsheet(document.getElementById('spreadsheet'), {
+    data: data,
+    columns: [
+        {
+            type: 'text',
+            title:'Description',
+            width:'200px',
+            readOnly:true,
+        },
+        {
+            type: 'text',
+            title:'Year',
+            width:'200px'
+        },
+        {
+            type: 'text',
+            title:'Price',
+            width:'100px',
+            mask:'#.##',
+        },
+        {
+            type: 'checkbox',
+            title:'Automatic',
+            width:'100px'
+        },
+    ],
+    updateTable: function(el, cell, x, y, source, value, id) {
+        if (x == 2 && y == 2) {
+            cell.classList.add('readonly');
+        }
+    } 
+});
+&#60;/script>
+&#60;/html>
+</pre>
+
+
+</div>
+</div>

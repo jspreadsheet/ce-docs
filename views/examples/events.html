@@ -1,0 +1,284 @@
+<div class="section">
+<div class="section-content">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+
+<div class='breadcrumb'><a href='/jspreadsheet/v4/examples' title='Back to the examples section'>Back to Examples</a></div>
+
+<h1>Handling events</h1>
+
+<br>
+
+<div class="section-divisor">
+    <div class="section-number">1</div> <div class="section-title"><h2>Various tracking javascript methods</h2></div>
+</div>
+
+<p>Binding events on your javascript spreadsheet.</p>
+
+<div id='spreadsheet'></div>
+
+<p><a href='/jspreadsheet/v4/docs/events'>See a list of all event handlers</a></p>
+
+<br><br>
+
+<div>
+    <button onclick="$('#log').html('')">Clear</button><br>
+    <p>Log:</p>
+    <div id='log' style='background-color:#c7eaff; border-radius:2px; color:#000; padding:20px'></div>
+</div>
+
+<br><br>
+
+<h3>Source code</h3>
+
+
+<pre class="prettyprint linenums">
+&#60;html>
+&#60;script src="https://bossanova.uk/jspreadsheet/v4/jexcel.js">&#60;/script>
+&#60;script src="https://jsuites.net/v4/jsuites.js">&#60;/script>
+&#60;link rel="stylesheet" href="https://bossanova.uk/jspreadsheet/v4/jexcel.css" type="text/css" />
+&#60;link rel="stylesheet" href="https://jsuites.net/v4/jsuites.css" type="text/css" />
+
+&#60;div id="spreadsheet">&#60;/div>
+
+&#60;script>
+var changed = function(instance, cell, x, y, value) {
+    var cellName = jexcel.getColumnNameFromId([x,y]);
+    $('#log').append('New change on cell ' + cellName + ' to: ' + value + '<br>');
+}
+
+var beforeChange = function(instance, cell, x, y, value) {
+    var cellName = jexcel.getColumnNameFromId([x,y]);
+    $('#log').append('The cell ' + cellName + ' will be changed<br>');
+}
+
+var insertedRow = function(instance) {
+    $('#log').append('Row added<br>');
+}
+
+var insertedColumn = function(instance) {
+    $('#log').append('Column added<br>');
+}
+
+var deletedRow = function(instance) {
+    $('#log').append('Row deleted<br>');
+}
+
+var deletedColumn = function(instance) {
+    $('#log').append('Column deleted<br>');
+}
+
+var sort = function(instance, cellNum, order) {
+    var order = (order) ? 'desc' : 'asc';
+    $('#log').append('The column  ' + cellNum + ' sorted by ' + order + '<br>');
+}
+
+var resizeColumn = function(instance, cell, width) {
+    $('#log').append('The column  ' + cell + ' resized to width ' + width + ' px<br>');
+}
+
+var resizeRow = function(instance, cell, height) {
+    $('#log').append('The row  ' + cell + ' resized to height ' + height + ' px<br>');
+}
+
+var selectionActive = function(instance, x1, y1, x2, y2, origin) {
+    var cellName1 = jexcel.getColumnNameFromId([x1, y1]);
+    var cellName2 = jexcel.getColumnNameFromId([x2, y2]);
+    $('#log').append('The selection from ' + cellName1 + ' to ' + cellName2 + '<br>');
+}
+
+var loaded = function(instance) {
+    $('#log').append('New data is loaded<br>');
+}
+
+var moveRow = function(instance, from, to) {
+    $('#log').append('The row ' + from + ' was move to the position of ' + to + ' <br>');
+}
+
+var moveColumn = function(instance, from, to) {
+    $('#log').append('The col ' + from + ' was move to the position of ' + to + ' <br>');
+}
+
+var blur = function(instance) {
+    $('#log').append('The table ' + $(instance).prop('id') + ' is blur<br>');
+}
+
+var focus = function(instance) {
+    $('#log').append('The table ' + $(instance).prop('id') + ' is focus<br>');
+}
+
+var paste = function(data) {
+    $('#log').append('Paste on the table ' + $(instance).prop('id') + '<br>');
+}
+
+var data = [
+    ['Mazda', 2001, 2000, '2006-01-01'],
+    ['Pegeout', 2010, 5000, '2005-01-01'],
+    ['Honda Fit', 2009, 3000, '2004-01-01'],
+    ['Honda CRV', 2010, 6000, '2003-01-01'],
+];
+
+jspreadsheet(document.getElementById('spreadsheet'), {
+    data:data,
+    rowResize:true,
+    columnDrag:true,
+    columns: [
+        { type: 'text', width:'200' },
+        { type: 'text', width:'100' },
+        { type: 'text', width:'100' },
+        { type: 'calendar', width:'100' },
+    ],
+    onchange: changed,
+    onbeforechange: beforeChange,
+    oninsertrow: insertedRow,
+    oninsertcolumn: insertedColumn,
+    ondeleterow: deletedRow,
+    ondeletecolumn: deletedColumn,
+    onselection: selectionActive,
+    onsort: sort,
+    onresizerow: resizeRow,
+    onresizecolumn: resizeColumn,
+    onmoverow: moveRow,
+    onmovecolumn: moveColumn,
+    onload: loaded,
+    onblur: blur,
+    onfocus: focus,
+    onpaste: paste,
+});
+&#60;/script>
+&#60;/html>
+</pre>
+
+
+<div class="section-divisor">
+    <div class="section-number">2</div> <div class="section-title"><h2>Global Super event</h2></div>
+</div>
+
+<p>One method to handle all events on the online spreadsheet.</p>
+
+<div id='spreadsheet2'></div>
+
+<p><b>NOTE</b>: Open the console to see the events.</p>
+
+<script>
+var changed = function(instance, cell, x, y, value) {
+    console.log(cell)
+    var cellName = jexcel.getColumnNameFromId([x,y]);
+    $('#log').append('New change on cell ' + cellName + ' to: ' + value + '<br>');
+}
+
+var beforeChange = function(instance, cell, x, y, value) {
+    var cellName = jexcel.getColumnNameFromId([x,y]);
+    $('#log').append('The cell ' + cellName + ' will be changed<br>');
+}
+
+var insertedRow = function(instance) {
+    $('#log').append('Row added<br>');
+}
+
+var insertedColumn = function(instance) {
+    $('#log').append('Column added<br>');
+}
+
+var deletedRow = function(instance) {
+    $('#log').append('Row deleted<br>');
+}
+
+var deletedColumn = function(instance) {
+    $('#log').append('Column deleted<br>');
+}
+
+var sort = function(instance, cellNum, order) {
+    var order = (order) ? 'desc' : 'asc';
+    $('#log').append('The column  ' + cellNum + ' sorted by ' + order + '<br>');
+}
+
+var resizeColumn = function(instance, cell, width) {
+    $('#log').append('The column  ' + cell + ' resized to width ' + width + ' px<br>');
+}
+
+var resizeRow = function(instance, cell, height) {
+    $('#log').append('The row  ' + cell + ' resized to height ' + height + ' px<br>');
+}
+
+var selectionActive = function(instance, x1, y1, x2, y2, origin) {
+    var cellName1 = jexcel.getColumnNameFromId([x1, y1]);
+    var cellName2 = jexcel.getColumnNameFromId([x2, y2]);
+    $('#log').append('The selection from ' + cellName1 + ' to ' + cellName2 + '<br>');
+}
+
+var loaded = function(instance) {
+    $('#log').append('New data is loaded<br>');
+}
+
+var moveRow = function(instance, from, to) {
+    $('#log').append('The row ' + from + ' was move to the position of ' + to + ' <br>');
+}
+
+var moveColumn = function(instance, from, to) {
+    $('#log').append('The col ' + from + ' was move to the position of ' + to + ' <br>');
+}
+
+var blur = function(instance) {
+    $('#log').append('The table ' + $(instance).prop('id') + ' is blur<br>');
+}
+
+var focus = function(instance) {
+    $('#log').append('The table ' + $(instance).prop('id') + ' is focus<br>');
+}
+
+var paste = function(instance, data) {
+    $('#log').append('Paste on the table ' + $(instance).prop('id') + '<br>');
+}
+
+var data = [
+    ['Mazda', 2001, 2000, '2006-01-01'],
+    ['Pegeout', 2010, 5000, '2005-01-01'],
+    ['Honda Fit', 2009, 3000, '2004-01-01'],
+    ['Honda CRV', 2010, 6000, '2003-01-01'],
+];
+
+document.addEventListener('DOMContentLoaded', function() {
+    jspreadsheet(document.getElementById('spreadsheet'), {
+        data:data,
+        rowResize:true,
+        columnDrag:true,
+        columns: [
+            { type: 'text', width:'200' },
+            { type: 'text', width:'100' },
+            { type: 'text', width:'100' },
+            { type: 'calendar', width:'100' },
+        ],
+        onchange: changed,
+        onbeforechange: beforeChange,
+        oninsertrow: insertedRow,
+        oninsertcolumn: insertedColumn,
+        ondeleterow: deletedRow,
+        ondeletecolumn: deletedColumn,
+        onselection: selectionActive,
+        onsort: sort,
+        onresizerow: resizeRow,
+        onresizecolumn: resizeColumn,
+        onmoverow: moveRow,
+        onmovecolumn: moveColumn,
+        onload: loaded,
+        onblur: blur,
+        onfocus: focus,
+        onpaste: paste,
+        onbeforeinsertcolumn: function(a,b,c) {
+        }
+    });
+    
+    jspreadsheet(document.getElementById('spreadsheet2'), {
+        minDimensions:[10,10],
+        onevent: function(a,b,c,d,e,f,g,h) {
+            console.log(a,b,c,d,e,f,g,h);
+        }
+    });
+});
+</script>
+
+
+</div>
+</div>

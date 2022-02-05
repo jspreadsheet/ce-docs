@@ -1,0 +1,77 @@
+<div class="section">
+<div class="section-content">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
+
+<div class='breadcrumb'><a href='/jspreadsheet/v4/examples' title='Back to the examples section'>Back to Examples</a></div>
+
+<h1>The Javascript spreadsheet with Vue</h1>
+
+<p>Integrating Jspreadsheet with Vue</p>
+
+<div id="spreadsheet"></div>
+
+<br><br/>
+
+<input type="button" value="Add new row" onclick="vm.insertRow()">
+
+<br><br>
+
+<p><a href="https://codesandbox.io/embed/vue-default-template-p4hwn" target="_blank">See a full example on codesandbox</a></p>
+
+<p><a href="https://github.com/jspreadsheet/jexcel-with-vue" target="_blank">Get a source code of a sample Vue project</a>
+
+<br><br>
+
+<h3>Source code</h3>
+
+<pre class="prettyprint linenums">
+&#60;html>
+&#60;script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js">&#60;/script>
+
+&#60;script src="https://bossanova.uk/jspreadsheet/v4/jexcel.js">&#60;/script>
+&#60;script src="https://jsuites.net/v4/jsuites.js">&#60;/script>
+&#60;link rel="stylesheet" href="https://bossanova.uk/jspreadsheet/v4/jexcel.css" type="text/css" />
+&#60;link rel="stylesheet" href="https://jsuites.net/v4/jsuites.css" type="text/css" />
+
+&#60;div id="spreadsheet">&#60;/div>
+
+&#60;input type="button" value="Add new row" onclick="vm.insertRow()" />
+
+&#60;script>
+var options = {
+    data:[[]],
+    minDimensions:[10,10],
+}
+
+var vm = new Vue({
+    el: '#spreadsheet',
+    mounted: function() {
+        let spreadsheet = jspreadsheet(this.$el, options);
+        Object.assign(this, spreadsheet);
+    }
+}); 
+&#60;/script>
+</pre>
+
+
+<script>
+var vm = null;
+document.addEventListener('DOMContentLoaded', function() {
+    var options = {
+        data:[[]],
+        minDimensions:[10,10],
+    }
+
+    vm = new Vue({
+        el: '#spreadsheet',
+        mounted: function() {
+            let spreadsheet = jspreadsheet(this.$el, options);
+            Object.assign(this, spreadsheet);
+        }
+    }); 
+});
+</script>
+
+</div>
+</div>

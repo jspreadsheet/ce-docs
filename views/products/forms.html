@@ -1,0 +1,322 @@
+<script src="https://www.paypal.com/sdk/js?client-id=<?=PAYPAL_CLIENT_ID?>&currency=GBP&disable-funding=credit,card,sofort"></script>
+
+<div class="section">
+<div class='section-label' style='background-color: #737373'>Products</div>
+<div class="section-content">
+
+
+<img src='img/contextmenu-spreadsheet-plugin-icon.png' class='left mr1' style='width:80px;'>
+
+<div class='row'>
+<div class='column f4 mr2'>
+
+<h1>Spreadsheet to form</h1>
+
+The JSS forms is a premium extension to create a rich HTML form directly from your JSS spreadsheet column definitions. It is possible to send the data from the form to a remote server, create a new row in the spreadsheet, or even define a custom behavior using onbeforesave.<br><br>
+
+</div><div class='column f1'>
+
+<div class='purchase'>
+<span><s>Regular price £ 58</s></span>
+
+<div class='purchase-price'>£ 29 <span class='small'>One-time fee</span></div>
+
+<div class='purchase-button'>
+    <div id="paypal-button-container"></div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+<h2>Author</h2>
+Jspreadsheet Pro Team.<br><br>
+
+<h2>License</h2>
+This plugin requires a license.<br><br>
+
+<h2>Configuration</h2>
+
+The following options area available to customize the behavior of the plugin<br>
+
+<table class='table'>
+<thead>
+<tr><th>Method</th><th>Description</tr></thead>
+<tbody>
+<tr>
+    <td>url?: String</td>
+    <td>The URL where the data should be send.</td>
+</tr>
+<tr>
+    <td>logo?: String</td>
+    <td>The URL of the form logo.</td>
+</tr>
+<tr>
+    <td>instructions?: String</td>
+    <td>Text with the instructions for the user. <code>Default: 'Please fill the form below'</code></td>
+</tr>
+<tr>
+    <td>completeMessage?: String</td>
+    <td>Text with the complete message when the user submit the form. <code>Default: 'Thank you for your time'</code></td>
+</tr>
+<tr>
+    <td>columns?: Array</td>
+    <td>Form field definitions, extracted from a valid JSS spreadsheet.</td>
+</tr>
+<tr>
+    <td>onbeforesave?: Function</td>
+    <td>Intercept the save to change or cancel the user action.</td>
+</tr>
+<tr>
+    <td>onsave?: Function</td>
+    <td>Will trigger the method after the form is submitted by the user.</td>
+</tr>
+</tbody>
+</table>
+
+
+<br><br>
+
+<h2>Example</h2>
+
+The following example creates an HTML form from the JSS spreadsheet. In the first example, the form data will be added as a new row, and in the second example, the data is posted to a remote server.<br><br>
+
+<div id="spreadsheet"></div>
+
+<br><br>
+
+<h3>Create a new row in the spreadsheet with the form data</h3>
+
+<p><input type='button' value='Create form' onclick='create()' class='jbutton dark'>
+
+<br><br>
+
+<div id="form-1"></div>
+
+<br><br><br>
+
+<h3>Send the data from the form to a remove server</h3>
+
+<p><input type='button' value='Create form' onclick='create_2()' class='jbutton dark'>
+
+<br><br>
+
+<div id="form-2"></div>
+
+<br><br>
+
+<pre class="prettyprint linenums">
+&#60;html>
+&#60;script src="https://jspreadsheet.com/v8/jspreadsheet.js">&#60;/script>
+&#60;link rel="stylesheet" href="https://jspreadsheet.com/v7/jspreadsheet.css" type="text/css" />
+&#60;script src="https://jsuites.net/v4/jsuites.js">&#60;/script>
+&#60;link rel="stylesheet" href="https://jsuites.net/v4/jsuites.css" type="text/css" />
+
+&#60;script src="https://jspreadsheet.com/v8/plugins/forms.js">&#60;/script>
+
+&#60;div id="spreadsheet">&#60;/div>
+
+&#60;br>&#60;br>
+
+&#60;input type='button' value='Create form' onclick='create()' class='jbutton dark'>
+
+&#60;div id="form">&#60;/div>
+
+
+&#60;script>
+var create = function() {
+    // Spreadsheet instance
+    var worksheet = document.getElementById('spreadsheet').jspreadsheet[0];
+
+    // Create form from the spreadsheet
+    jspreadsheet.forms(document.getElementById('form-1'), {
+        logo: 'https://jspreadsheet.com/jspreadsheet/logo.png',
+        columns: worksheet.options.columns,
+        onbeforesave: function(el, data) {
+            // Get the values
+            worksheet.insertRow(Object.values(data));
+            // Stop default behavior
+            return false;
+        }
+    });
+}
+
+var create_2 = function() {
+    // Spreadsheet instance
+    var worksheet = document.getElementById('spreadsheet').jspreadsheet[0];
+
+    // Create form from the spreadsheet
+    jspreadsheet.forms(document.getElementById('form-2'), {
+        url: '/v8/save',
+        logo: 'https://jspreadsheet.com/jspreadsheet/logo.png',
+        columns: worksheet.options.columns,
+    });
+}
+
+// Set the license for both plugin and the spreadsheet
+jspreadsheet.license = 'Yjg4Yzc5YjgzODljYmUwZWMzYzFiNjEyOTJhNzI4MDRkNGIxODNjN2EzZWVmYzAyMTM2MTFkMTFkNjAxZTM2Y2UzOWE3MTk2NDFkY2I3YWFmZGY1YzdjN2FhYzg5MjYwOTU5YmJiNzVlYzNlYWZlNGVmYWQwZDQ0YmFlMjdmZjAsZXlKdVlXMWxJam9pY0dGMWJDNW9iMlJsYkNJc0ltUmhkR1VpT2pFMk5UZzJNVGN5TURBc0ltUnZiV0ZwYmlJNld5SmhjSEpwYkM1amIyMHVZbklpTENKc2IyTmhiR2h2YzNRaVhTd2ljR3hoYmlJNklqRWlMQ0p6WTI5d1pTSTZXeUoyTnlJc0luWTRJaXdpWm05eWJYVnNZU0pkZlE9PQ==';
+
+// Set the extensions
+jspreadsheet.setExtensions({ forms });
+
+// Create the spreadsheet
+jspreadsheet(document.getElementById('spreadsheet'), {
+    worksheets: [{
+        minDimensions: [ 6, 8 ],
+        columns: [
+            {
+                title: 'Name'
+            },
+            {
+                title: 'Birthday',
+                type: 'calendar'
+            },
+            {
+                title: 'Team color',
+                type: 'color'
+            },
+            {
+                title: 'Department',
+                type: 'dropdown',
+                source: ['Accounts','IT','Marketing'],
+                width: '150px',
+            },
+            {
+                title: 'Rating',
+                type: 'rating',
+            },
+            {
+                title: 'Reviewed',
+                type: 'checkbox',
+            },
+        ]
+    }],
+});
+&#60;/script>
+&#60;/html>
+</pre>
+
+</div>
+</div>
+
+
+<script>
+var create = function() {
+    // Spreadsheet instance
+    var worksheet = document.getElementById('spreadsheet').jspreadsheet[0];
+
+    // Create form from the spreadsheet
+    jspreadsheet.forms(document.getElementById('form-1'), {
+        logo: 'https://jspreadsheet.com/jspreadsheet/logo.png',
+        columns: worksheet.options.columns,
+        onbeforesave: function(el, data) {
+            // Get the values
+            worksheet.insertRow(Object.values(data));
+            // Stop default behavior
+            return false;
+        }
+    });
+}
+
+var create_2 = function() {
+    // Spreadsheet instance
+    var worksheet = document.getElementById('spreadsheet').jspreadsheet[0];
+
+    // Create form from the spreadsheet
+    jspreadsheet.forms(document.getElementById('form-2'), {
+        url: '/v8/save',
+        logo: 'https://jspreadsheet.com/jspreadsheet/logo.png',
+        columns: worksheet.options.columns,
+    });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Set the extensions
+    jspreadsheet.setExtensions({ forms });
+
+    jspreadsheet(document.getElementById('spreadsheet'), {
+        worksheets: [{
+            minDimensions: [ 6, 8 ],
+            columns: [
+                {
+                    title: 'Name'
+                },
+                {
+                    title: 'Birthday',
+                    type: 'calendar'
+                },
+                {
+                    title: 'Team color',
+                    type: 'color'
+                },
+                {
+                    title: 'Department',
+                    type: 'dropdown',
+                    source: ['Accounts','IT','Marketing'],
+                    width: '150px',
+                },
+                {
+                    title: 'Rating',
+                    type: 'rating',
+                },
+                {
+                    title: 'Reviewed',
+                    type: 'checkbox',
+                },
+            ]
+        }],
+    });
+});
+</script>
+
+<script>
+paypal.Buttons({
+    style: {
+        shape: 'rect',
+        color: 'gold',
+        layout: 'vertical',
+        label: 'paypal',
+
+    },
+
+    createOrder: function(data, actions) {
+        return actions.order.create({
+            purchase_units: [{
+                "reference_id": "2",
+                "description": "JSS Forms",
+                "amount": {
+                    "currency_code": "GBP",
+                    "value": 29
+                }
+            }],
+            application_context: {
+                shipping_preference: "NO_SHIPPING"
+            }
+        });
+    },
+
+    onApprove: function(data, actions) {
+        return actions.order.capture().then(function(details) {
+            jSuites.ajax({
+                url: '/products/order/' + details.id,
+                method: 'GET',
+                dataType: 'json',
+                success: function(result) {
+                    jSuites.notification(result);
+
+                    if (result.success) {
+                        setTimeout(function() {
+                            window.open('/me/profile', '_top');
+                        }, 3000);
+                    }
+                }
+            });
+        });
+    },
+
+    onError: function(err) {
+        console.log(err);
+    }
+}).render('#paypal-button-container');
+</script>

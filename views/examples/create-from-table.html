@@ -1,0 +1,236 @@
+<div class="section">
+<div class="section-content">
+
+<div class='breadcrumb'><a href='/jspreadsheet/v4/examples' title='Back to the examples section'>Back to Examples</a></div>
+
+<h1>Create from a HTML table</h1>
+
+<p>From the v4+ is is possible to create a online spreadsheet from a static simple HTML table.</p>
+
+<h4>The Official Top 10 biggest albums of 2019</h4>
+
+
+<table id="spreadsheet">
+    <thead>
+    <tr>
+    <td colspan='4'>General</td>
+    </tr>
+    <tr>
+    <td colspan='3'>Info</td>
+    <td colspan='1'>Stats</td>
+    </tr>
+    <tr>
+    <td id='pos'>POS</td>
+    <td id='title'>TITLE</td>
+    <td id='artist'>ARTIST</td>
+    <td id='peak'>PEAK</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+    <td class='black'>1</td>
+    <td>DIVINELY UNINSPIRED TO A HELLISH EXTENT</td>
+    <td>LEWIS CAPALDI</td>
+    <td>1</td>
+    </tr>
+    <tr>
+    <td>2</td>
+    <td>NO 6 COLLABORATIONS PROJECT</td>
+    <td>ED SHEERAN</td>
+    <td>1</td>
+    </tr>
+    <tr>
+    <td>3</td>
+    <td>THE GREATEST SHOWMAN</td>
+    <td>MOTION PICTURE CAST RECORDING</td>
+    <td>1</td>
+    </tr>
+    <tr>
+    <td>4</td>
+    <td>WHEN WE ALL FALL ASLEEP WHERE DO WE GO</td>
+    <td>BILLIE EILISH</td>
+    <td>1</td>
+    </tr>
+    <tr>
+    <td>5</td>
+    <td>STAYING AT TAMARA'S</td>
+    <td>GEORGE EZRA</td>
+    <td>1</td>
+    </tr>
+    <tr>
+    <td>6</td>
+    <td>BOHEMIAN RHAPSODY - OST</td>
+    <td>QUEEN</td>
+    <td>3</td>
+    </tr>
+    <tr>
+    <td>7</td>
+    <td>THANK U NEXT</td>
+    <td>ARIANA GRANDE</td>
+    <td>1</td>
+    </tr>
+    <tr>
+    <td>8</td>
+    <td>WHAT A TIME TO BE ALIVE</td>
+    <td>TOM WALKER</td>
+    <td>1</td>
+    </tr>
+    <tr>
+    <td>9</td>
+    <td>A STAR IS BORN</td>
+    <td>MOTION PICTURE CAST RECORDING</td>
+    <td>1</td>
+    </tr>
+    <tr>
+    <td>10</td>
+    <td>YOU'RE IN MY HEART</td>
+    <td>ROD STEWART</td>
+    <td>1</td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>=SUMCOL(TABLE(), COLUMN())</td>
+    </tr>
+    </tfoot>
+</table>
+
+<br><br>
+
+<h3>Source code</h3>
+
+<pre class="prettyprint linenums">
+&#60;html>
+&#60;script src="https://bossanova.uk/jspreadsheet/v4/jexcel.js">&#60;/script>
+&#60;script src="https://jsuites.net/v4/jsuites.js">&#60;/script>
+&#60;link rel="stylesheet" href="https://bossanova.uk/jspreadsheet/v4/jexcel.css" type="text/css" />
+&#60;link rel="stylesheet" href="https://jsuites.net/v4/jsuites.css" type="text/css" />
+
+&#60;h4>The Official Top 40 biggest albums of 2019&#60;/h4>
+
+&#60;table id="spreadsheet">
+&#60;thead>
+&#60;tr>
+&#60;td colspan='4'>General&#60;/td>
+&#60;/tr>
+&#60;tr>
+&#60;td colspan='3'>Info&#60;/td>
+&#60;td colspan='1'>Stats&#60;/td>
+&#60;/tr>
+&#60;tr>
+&#60;td id='pos'>POS&#60;/td>
+&#60;td id='title'>TITLE&#60;/td>
+&#60;td id='artist'>ARTIST&#60;/td>
+&#60;td id='peak'>PEAK&#60;/td>
+&#60;/tr>
+&#60;/thead>
+&#60;tbody>
+&#60;tr>
+&#60;td>1&#60;/td>
+&#60;td>DIVINELY UNINSPIRED TO A HELLISH EXTENT&#60;/td>
+&#60;td>LEWIS CAPALDI&#60;/td>
+&#60;td>1&#60;/td>
+&#60;/tr>
+&#60;tr>
+&#60;td>2&#60;/td>
+&#60;td>NO 6 COLLABORATIONS PROJECT&#60;/td>
+&#60;td>ED SHEERAN&#60;/td>
+&#60;td>1&#60;/td>
+&#60;/tr>
+&#60;tr>
+&#60;td>3&#60;/td>
+&#60;td>THE GREATEST SHOWMAN&#60;/td>
+&#60;td>MOTION PICTURE CAST RECORDING&#60;/td>
+&#60;td>1&#60;/td>
+&#60;/tr>
+&#60;tr>
+&#60;td>4&#60;/td>
+&#60;td>WHEN WE ALL FALL ASLEEP WHERE DO WE GO&#60;/td>
+&#60;td>BILLIE EILISH&#60;/td>
+&#60;td>1&#60;/td>
+&#60;/tr>
+&#60;tr>
+&#60;td>5&#60;/td>
+&#60;td>STAYING AT TAMARA'S&#60;/td>
+&#60;td>GEORGE EZRA&#60;/td>
+&#60;td>1&#60;/td>
+&#60;/tr>
+&#60;tr>
+&#60;td>6&#60;/td>
+&#60;td>BOHEMIAN RHAPSODY - OST&#60;/td>
+&#60;td>QUEEN&#60;/td>
+&#60;td>3&#60;/td>
+&#60;/tr>
+&#60;tr>
+&#60;td>7&#60;/td>
+&#60;td>THANK U NEXT&#60;/td>
+&#60;td>ARIANA GRANDE&#60;/td>
+&#60;td>1&#60;/td>
+&#60;/tr>
+&#60;tr>
+&#60;td>8&#60;/td>
+&#60;td>WHAT A TIME TO BE ALIVE&#60;/td>
+&#60;td>TOM WALKER&#60;/td>
+&#60;td>1&#60;/td>
+&#60;/tr>
+&#60;tr>
+&#60;td>9&#60;/td>
+&#60;td>A STAR IS BORN&#60;/td>
+&#60;td>MOTION PICTURE CAST RECORDING&#60;/td>
+&#60;td>1&#60;/td>
+&#60;/tr>
+&#60;tr>
+&#60;td>10&#60;/td>
+&#60;td>YOU'RE IN MY HEART&#60;/td>
+&#60;td>ROD STEWART&#60;/td>
+&#60;td>1&#60;/td>
+&#60;/tr>
+&#60;/tbody>
+&#60;tfoot>
+&#60;tr>
+&#60;td>&#60;/td>
+&#60;td>&#60;/td>
+&#60;td>&#60;/td>
+&#60;td>=SUMCOL(TABLE(), COLUMN())&#60;/td>
+&#60;/tr>
+&#60;/tfoot>
+&#60;/table>
+
+&#60;br>
+
+&#60;script>
+jspreadsheet(document.getElementById('spreadsheet')); 
+&#60;/script>
+&#60;/html>
+</pre>
+
+<script>
+var SUMCOL = function(instance, columnId) {
+    var total = 0;
+    for (var j = 0; j < instance.options.data.length; j++) {
+        if (Number(instance.records[j][columnId-1].innerHTML)) {
+            total += Number(instance.records[j][columnId-1].innerHTML);
+        }
+    }
+    return total;
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    jspreadsheet(document.getElementById('spreadsheet'), {
+        parseTableFirstRowAsHeader: true,
+        includeHeadersOnDownload: true,
+    });
+});
+</script>
+
+<h3>More examples</h3>
+
+<ul>
+<li><a href="https://jsfiddle.net/spreadsheet/45h6odug/" title="Merged cells">Including merged cells</a></li>
+</ul>
+
+</div>
+</div>

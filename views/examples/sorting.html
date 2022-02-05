@@ -1,0 +1,122 @@
+<div class="section">
+<div class="section-content">
+
+<div class='breadcrumb'><a href='/jspreadsheet/v4/examples' title='Back to the examples section'>Back to Examples</a></div>
+
+<h1>Sorting your table</h1>
+
+<br>
+
+<div class="section-divisor">
+    <div class="section-number">1</div> <div class="section-title"><h2>Simple example</h2></div>
+</div>
+
+<p>You can sort your javascript table by double a double click in the header, using the context menu or by javascript as follow:</p>
+
+<div id="spreadsheet"></div>
+
+<script>
+var table = null;
+var data = [
+    ['Mazda', 2001, 2000, '2006-01-01'],
+    ['Pegeout', 2010, 5000, '2005-01-01'],
+    ['Honda Fit', 2009, 3000, '2004-01-01'],
+    ['Honda CRV', 2010, 6000, '2003-01-01'],
+];
+
+document.addEventListener('DOMContentLoaded', function() {
+    table = jspreadsheet(document.getElementById('spreadsheet'), {
+        data:data,
+        columns: [
+            { type: 'text', width:300 },
+            { type: 'text', width:80 },
+            { type: 'text', width:100 },
+            { type: 'calendar', width:100 },
+        ]
+    });
+});
+</script>
+
+<br>
+
+<select id='columnNumber'><option value='0'>Column 1</option><option value='1'>Column 2</option><option value='2'>Column 3</option><option value='3'>Column 4</option></select>
+
+<input type='button' value='Sort column' onclick="table.orderBy(document.getElementById('columnNumber').value)">
+
+<br>
+
+<br>
+
+<h3>Source code</h3>
+
+<pre class="prettyprint linenums">
+&#60;html>
+&#60;script src="https://bossanova.uk/jspreadsheet/v4/jexcel.js">&#60;/script>
+&#60;script src="https://jsuites.net/v4/jsuites.js">&#60;/script>
+&#60;link rel="stylesheet" href="https://bossanova.uk/jspreadsheet/v4/jexcel.css" type="text/css" />
+&#60;link rel="stylesheet" href="https://jsuites.net/v4/jsuites.css" type="text/css" />
+
+&#60;div id="spreadsheet">&#60;/div>
+
+&#60;script>
+var data = [
+    ['Mazda', 2001, 2000, '2006-01-01'],
+    ['Pegeout', 2010, 5000, '2005-01-01'],
+    ['Honda Fit', 2009, 3000, '2004-01-01'],
+    ['Honda CRV', 2010, 6000, '2003-01-01'],
+];
+
+var table = jspreadsheet(document.getElementById('spreadsheet'), {
+    data:data,
+    columns: [
+        { type: 'text', width:300 },
+        { type: 'text', width:80 },
+        { type: 'text', width:100 },
+        { type: 'calendar', width:100 },
+    ]
+});
+&#60;/script>
+
+&#60;select id='columnNumber'>
+&#60;option value='0'>Column 1&#60;/option>
+&#60;option value='1'>Column 2&#60;/option>
+&#60;option value='2'>Column 3&#60;/option>
+&#60;option value='3'>Column 4&#60;/option>
+&#60;/select>
+&#60;input type='button' value='Sort column' onclick="table.orderBy(document.getElementById('columnNumber').value)">
+
+&#60;/html>
+</pre>
+
+<br>
+
+<div class="section-divisor">
+    <div class="section-number">2</div> <div class="section-title"><h2>Disable the table sorting</h2></div>
+</div>
+
+<p>The ordering is a native enabled feature. To disable that feature please use the columnSorting:false, directive in the initialization.</p>
+
+<pre class="prettyprint linenums">
+&#60;script>
+var data = [
+    ['Mazda', 2001, 2000, '2006-01-01'],
+    ['Pegeout', 2010, 5000, '2005-01-01'],
+    ['Honda Fit', 2009, 3000, '2004-01-01'],
+    ['Honda CRV', 2010, 6000, '2003-01-01'],
+];
+
+jspreadsheet(document.getElementById('spreadsheet'), {
+    data:data,
+    columns: [
+        { type: 'text', tile:'Model', width:300 },
+        { type: 'text', tile:'Year', width:100 },
+        { type: 'text', tile:'Price', width:100 },
+        { type: 'text', tile:'Date', width:100 },
+    ],
+    columnSorting:false,
+});
+&#60;/script>
+</pre>
+
+</div>
+</div>

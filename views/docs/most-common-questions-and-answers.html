@@ -1,0 +1,111 @@
+<div class="section">
+<div class="section-content">
+
+<div class='breadcrumb'><a href='/jspreadsheet/v4/docs' alt='Back to the documentation section'>Back to Documentation</a></div>
+
+<h1>Most common questions and answers</h1>
+
+<br>
+
+<ol>
+<li>
+<h3>What is the best way to create odd/even rows on a Jspreadsheet spreadsheet and tables?</h3>
+
+<p>Solution: Adding the following CSS code on your project.</p>
+<pre class="prettyprint linenums linenums">
+.jexcel tbody tr:nth-child(even) {
+  background-color: #EEE9F1 !important;
+}
+</pre>
+</li>
+
+<br>
+
+<li>
+<h3>How to transform multiple HTML static tables in dynamic Jspreadsheet tables?</h3>
+<pre class="prettyprint linenums linenums">
+var tables = document.querySelectorAll('table');
+for (var i = 0; i < tables.length; i++) {
+    jspreadsheet(tables[i]);
+}
+</pre>
+</li>
+
+<br>
+
+<li>
+<h3>How to disable paste over a Jspreadsheet spreadsheet?</h3>
+<pre class="prettyprint linenums linenums">
+jspreadsheet(document.getElementById('spreadsheet'), {
+    onbeforepaste: function(instance, data, x, y) {
+        return false;
+    }
+});
+</pre>
+</li>
+
+<br>
+
+<li>
+<h3>How to intercept and change a pasted string over a Jspreadsheet table?</h3>
+<pre class="prettyprint linenums linenums">
+jspreadsheet(document.getElementById('spreadsheet'), {
+    onbeforepaste: function(instance, data, x, y) {
+        data = data.replace(',', '.', data);
+        return data;
+    }
+});
+</pre>
+</li>
+
+<br>
+
+<li>
+<h3>How to overwrite a type of a cell over a column type?</h3>
+<pre class="prettyprint linenums linenums">
+jspreadsheet(document.getElementById('spreadsheet'), {
+    columns: [
+        { type: 'text' },
+        { type: 'text' }, 
+    ],
+    cells: {
+        B2: { type:'number', mask:'$ #,##.00', decimal:'.' },
+        B3: { type:'percent' },
+    }
+});
+</pre>
+
+<span style="font-size:0.8em"><b>NOTE:</b> Only available on the <a href="https://jspreadsheet.com/">Pro distribution</a>.</span>
+
+</li>
+
+<br>
+
+<li>
+<h3>How to disabled the javascript contextmenu of my spreadsheet?</h3>
+<pre class="prettyprint linenums linenums">
+jspreadsheet(document.getElementById('spreadsheet'), {
+    columns: [
+        { type: 'text' },
+        { type: 'text' }, 
+    ],
+    contextMenu: function() {
+        return false;
+    }
+});
+</pre>
+</li>
+</ol>
+
+
+</div>
+</div>
+
+
+<style>
+ol {
+margin:0px;
+padding:0px;
+}
+
+</style>

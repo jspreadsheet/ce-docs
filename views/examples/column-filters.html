@@ -1,0 +1,88 @@
+<div class="section">
+<div class="section-content">
+
+<div class='breadcrumb'><a href='/jspreadsheet/v4/examples' title='Back to the examples section'>Back to Examples</a></div>
+
+<h1>Column filters</h1>
+
+<p>Enable column filters on your javascript dynamic tables.</p>
+
+<div id="spreadsheet"></div>
+
+<script>
+var data = [
+    ['US', 'Cheese', '2019-02-12'],
+    ['CA', 'Apples', '2019-03-01'],
+    ['CA', 'Carrots', '2018-11-10'],
+    ['BR', 'Oranges', '2019-01-12'],
+];
+
+document.addEventListener('DOMContentLoaded', function() {
+    mySpreadsheet = jspreadsheet(document.getElementById('spreadsheet'), {
+        data: data,
+        columns: [
+            { type: 'dropdown', url:'/jspreadsheet/countries', width:200, },
+            { type: 'text', width:200, },
+            { type: 'calendar', width:200, },
+            { type: 'checkbox' }
+         ],
+         filters: true,
+         columnDrag:true,
+    });
+});
+
+</script>
+
+<br><br>
+
+<h3>Source code</h3>
+
+<pre class="prettyprint linenums">
+&#60;html>
+&#60;script src="https://bossanova.uk/jspreadsheet/v4/jexcel.js">&#60;/script>
+&#60;link rel="stylesheet" href="https://bossanova.uk/jspreadsheet/v4/jexcel.css" type="text/css" />
+
+&#60;script src="https://jsuites.net/v4/jsuites.js">&#60;/script>
+&#60;link rel="stylesheet" href="https://jsuites.net/v4/jsuites.css" type="text/css" />
+
+&#60;div id="spreadsheet">&#60;/div>
+
+&#60;script>
+var data1 = [
+    ['US', 'Cheese', '2019-02-12'],
+    ['CA', 'Apples', '2019-03-01'],
+    ['CA', 'Carrots', '2018-11-10'],
+    ['BR', 'Oranges', '2019-01-12'],
+];
+
+mySpreadsheet = jspreadsheet(document.getElementById('spreadsheet'), {
+    data:data1,
+    columns: [
+        {
+            type: 'dropdown',
+            url:'https://bossanova.uk/jspreadsheet/v4/countries',
+            width:200,
+        },
+        {
+            type: 'text',
+            width:200,
+        },
+        {
+            type: 'calendar',
+            width:200,
+        },
+        {
+            type: 'checkbox',
+            width:200,
+        }
+     ],
+     filters: true,
+     allowComments:true,
+});
+&#60;/script>
+
+&#60;/html>
+</pre>
+
+</div>
+</div>

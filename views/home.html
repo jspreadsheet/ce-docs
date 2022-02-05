@@ -1,0 +1,410 @@
+<div class="section">
+<div class="section-content">
+
+<a href="https://jspreadsheet.com/v8"><img src='img/spreadsheet.gif' title='Spreadsheet' style='width: 100%; max-width: 856px;'></a>
+
+<br><br>
+
+<h1>Jspreadsheet v4: The javascript spreadsheet</h1>
+
+<b>Jexcel</b> has been renamed to <b>Jspreadsheet</b>.
+
+<p>
+Jspreadsheet is a lightweight vanilla javascript plugin to create amazing web-based online interactive tables and spreadsheets compatible
+with other spreadsheet softwares. You can create an online spreadsheet table from a JS array,
+JSON, CSV or XSLX files. You can copy from excel and paste straight to your online spreadsheet and vice versa.
+It is very easy to integrate any third party javascript plugins to create your own custom columns, custom editors, and customize any
+feature into your application. Jspreadsheet has plenty of different input options through its native column types to cover the most common web-based application
+requirements. It is a complete solution for web data management. Create amazing online spreadsheets with Jspreadsheet.
+</p>
+
+<p>With a few simple steps, you can have Jspreadsheet integrated into your applications. Impress your clients with better user experience with this amazing data interactive tool.</p>
+
+<ul>
+<li>Make rich and user-friendly web interfaces and applications</li>
+<li>You can easily handle complicated data inputs in a way users are used to</li>
+<li>Improve your user software experience</li>
+<li>Create rich CRUDS and beautiful UI</li>
+<li>Compatibility with excel spreadsheets: users can move data around with common copy and paste shortcuts</li>
+<li>Easy customizations with easy third-party plugin integrations</li>
+<li>Lean, fast and simple to use</li>
+<li>Thousands of successfully user cases</li>
+<li>Speed up your work dealing with difficult data entry in a web-based software</li>
+<li>Create and share amazing online spreadsheets</li>
+</ul>
+
+<br>
+
+<h2>Create amazing online spreadsheets</h2>
+
+<p>A example how to embed a simple javascript spreadsheet in your application. You can check out for more <a href='/jspreadsheet/v4/examples' title='Examples'>examples</a> here.</p>
+
+<div id="spreadsheet"></div>
+
+<br><br>
+
+<h2><a name='download' title='Download Jspreadsheet - Javascript spreadsheet'>Installation</a></h2>
+
+<pre class="prettyprint linenums">
+% npm install jspreadsheet-ce
+</pre>
+
+Or download from our <a href='http://github.com/jspreadsheet/ce' title='The javascript spreadsheet official github repository' target='new'>Github Official</a>
+
+<br><br>
+
+<h3><a name='installation'>Spreadsheet source code example</a></h3>
+
+<pre class="prettyprint linenums">
+&#60;html>
+&#60;script src="https://bossanova.uk/jspreadsheet/v4/jexcel.js">&#60;/script>
+&#60;link rel="stylesheet" href="https://bossanova.uk/jspreadsheet/v4/jexcel.css" type="text/css" />
+
+&#60;script src="https://jsuites.net/v4/jsuites.js">&#60;/script>
+&#60;link rel="stylesheet" href="https://jsuites.net/v4/jsuites.css" type="text/css" />
+
+&#60;div id="spreadsheet">&#60;/div>
+
+&#60;script>
+var data = [
+    ['Jazz', 'Honda', '2019-02-12', '', true, '$ 2.000,00', '#777700'],
+    ['Civic', 'Honda', '2018-07-11', '', true, '$ 4.000,01', '#007777'],
+];
+
+jspreadsheet(document.getElementById('spreadsheet'), {
+    data:data,
+    columns: [
+        {
+            type: 'text',
+            title:'Car',
+            width:90
+        },
+        {
+            type: 'dropdown',
+            title:'Make',
+            width:120,
+            source:[
+                "Alfa Romeo",
+                "Audi",
+                "Bmw",
+                "Chevrolet",
+                "Chrystler",
+                // (...)
+              ]
+        },
+        {
+            type: 'calendar',
+            title:'Available',
+            width:120
+        },
+        {
+            type: 'image',
+            title:'Photo',
+            width:120
+        },
+        {
+            type: 'checkbox',
+            title:'Stock',
+            width:80
+        },
+        {
+            type: 'numeric',
+            title:'Price',
+            mask:'$ #.##,00',
+            width:80,
+            decimal:','
+        },
+        {
+            type: 'color',
+            width:80,
+            render:'square',
+        },
+     ]
+});
+&#60;/script>
+&#60;/html>
+</pre>
+
+<br>
+
+<br>
+<br>
+<br>
+
+
+<h2>Jspreadsheet History</h2>
+
+<h3>Jspreadsheet 4.6.0</h3>
+
+<ul>
+    <li>Jexcel is renamed to Jpreadsheet</li>
+    <li>Integration with Jsuites v4</li>
+</ul>
+
+<br>
+
+<h3>Jspreadsheet 4.2.3</h3>
+
+<ul>
+    <li>The spreadsheet plugin now compatible with Jsuites v3.</li>
+    <li>New flags, security implementation</li>
+    <li>New DOM element references in the Toolbar and tabs spreadsheet worksheet events</li>
+</ul>
+
+<h3>4.0.0</h3>
+
+<p>A special thank to the <a href="https://www.fdl-lef.org/">FDL - Fonds de Dotation du Libre</a> support and sponsorship that make the new online spreadsheet version possible with so many nice features.</p>
+
+<ul>
+<li>The online spreadsheet with Support workbooks/tabs</li>
+<li>Create a dynamic spreadsheet table from a HTML static element</li>
+<li>Highlight the selected cells in the spreadsheet after CTRL+C</li>
+<li>Footer with formula support</li>
+<li>Multiple columns resize</li>
+<li>JSON update support (Helpers to update a remote server)</li>
+<li>Javascript spreadsheet global super event (centralized method to dispatch all events in one)</li>
+<li>Custom helpers: =PROGRESS (progressbar), =RATING (5 star rating)</li>
+<li>Custom helpers: =COLUMN, =ROW, =CELL, =TABLE, =VALUE information to be used on formula execution</li>
+<li>Dynamic nested header updates</li>
+<li>A new column type for HTML editing</li>
+<li>New flags such as: includeHeadersOnCopy, persistance, filters, autoCasting, freezeColumns
+<li>New events such as: onevent, onchangepage, onbeforesave, onsave</li>
+<li>More examples and documentation</li>
+</ul>
+
+
+<br>
+
+<h3>Jspreadsheet 3.9.0</h3>
+
+<ul>
+<li>New methods</li>
+<li>General fixes</li>
+</ul>
+
+<br>
+
+<h3>Jspreadsheet 3.6.0</h3>
+
+<ul>
+<li>Better spreadsheet formula parsing</li>
+<li>New javascript spreadsheet events</li>
+<li>New initialization options</li>
+<li>General fixes</li>
+</ul>
+
+<br>
+
+<h3>Jspreadsheet 3.2.3</h3>
+
+<ul>
+<li>getMeta, setMeta methods</li>
+<li>Npm package with jSuites</li>
+<li>General fixes</li>
+</ul>
+
+<br>
+
+<h3>Jspreadsheet 3.0.1</h3>
+
+<p>Jspreadsheet v3 is a complete rebuilt of the javascript spreasheet jquery plugin version. For that reason it was not possible to keep a
+complete compatibility with the previous version. If you are upgraging you might need to implement a few updates in your code.
+If you have questions, you can review the article upgraging from Jspreadsheet Spreadsheet v2 or Handsontable.</p>
+
+
+<p>The Jspreadsheet v3 brings lot of great new features:</p>
+
+<ul>
+<li>Drag and drop columns</li>
+<li>Resizable rows</li>
+<li>Merge columns</li>
+<li>Search</li>
+<li>Pagination</li>
+<li>Lazy loading</li>
+<li>Full screen flag</li>
+<li>Image upload</li>
+<li>Native color picker</li>
+<li>Better mobile compatibility</li>
+<li>Better nested headers compatibily</li>
+<li>Amazing keyboard navegation support</li>
+<li>Better hidden column management</li>
+<li>Great data picker: dropdown, autocomplete, multiple, group options and icons</li>
+<li>Importing from XSLX (experimental)</li>
+</ul>
+
+<p>Big improviments are included, such as:
+
+<ul>
+<li>Complete new formula engine with no external depencies with much faster results.</li>
+<li>Absolutely no selectors, means a much faster application</li>
+<li>New native columns</li>
+<li>No jQuery is required</li>
+<li>React, Vue and Angular examples</li>
+<li>XLXS support using a custom sheetjs (Experimental).</li>
+</ul>
+
+
+<br>
+
+<h3>Jspreadsheet 2.1.0</h3>
+
+<p>We are glad to bring you the latest jquery plugin version, with the following improvements:</p>
+
+<ul>
+    <li>Mobile touch fixes</li>
+    <li>Paste fixes & New CSV parser</li>
+</ul>
+
+<h3>Jspreadsheet 2.0.0</h3>
+
+<ul>
+    <li>New radio column</li>
+    <li>New dropdown with autocomplete and multiple selection options</li>
+    <li>Header/body separation for a better scroll/column resize behavior and compatibility</li>
+    <li>Better text-wrap including alt+enter excel compatibility</li>
+    <li>New set/get meta information</li>
+    <li>New set/get config parameters</li>
+    <li>New set/get programmatically cell style</li>
+    <li>New set/get cell comments</li>
+    <li>New table custom toolbar</li>
+    <li>New responsive calendar picker</li>
+</ul>
+
+<h3>Jspreadsheet 1.5.7</h3>
+
+<ul>
+    <li>Checkbox column type improvements</li>
+    <li>Destroy jquery table updates</li>
+</ul>
+
+<h3>Jspreadsheet 1.5.1</h3>
+
+<ul>
+    <li>Spreadsheet data overflow and fixed headers. See an <a href='/jspreadsheet/examples/table-with-fixed-headers'>example</a></li>
+    <li>Navigation improvements</li>
+</ul>
+
+<h3>Jspreadsheet 1.5.0</h3>
+
+<ul>
+    <li>Relative insertRow, deleteRow, insertColumn, deleteColumn. See an <a href='/jspreadsheet/examples/working-with-the-data'>example</a></li>
+    <li>Redo, Undo action tracker for insertRow, deleteRow, insertColumn, deleteColumn, moveRow</li>
+    <li>New formula column recursive chain</li>
+    <li>New alternative design option bootstrap-like. See an <a href='/jspreadsheet/examples/a-custom-table-design'>example</a></li>
+    <li>updateSettings updates</li>
+</ul>
+
+<br><br>
+
+<h2><a name='examples' title='More examples'>Javascript spreadsheet examples</a></h2>
+
+<?php
+$module = $this->getParam(0);
+foreach ($this->view['pages'] AS $k => $v) {
+    $url = $v['url'];
+    $url = explode('/', $url);
+    if (isset($url[1]) && isset($url[2]) && $url[1] == 'examples') {
+        echo "<li onclick=\"window.open('/$module/{$v['url']}', '_top')\"><a href='/$module/{$v['url']}' title='{$v['title']}'>{$v['link']}</a><br><span>{$v['description']}</span></li><br>";
+    }
+}
+?>
+
+<br><br>
+
+<h2>Copyright and license</h2>
+
+Jspreadsheet is released under the MIT license.
+
+<p>The software is registered under UK law. Contact <a href="mailto:contact@jspreadsheet.com">contact@jspreadsheet.com</a></p>
+
+<br>
+<br>
+
+<h2>About Jspreadsheet</h2>
+
+The Jspreadsheet is a full original javascript software created to facilitate the data manipulation in web based applications. It was created to be an easy javascript data input tool for users and it was created inspired on other spreadsheet software.<br><br>
+
+This software is free and was created to be a light alternative to create amazing online javascript spreadsheets.<br><br>
+
+</div>
+</div>
+
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var data = [
+            ['Jazz', 'Honda', '2019-02-12', 'data:image/png;base64,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', true, '$ 2.000,00', '#777700'],
+            ['Civic', 'Honda', '2018-07-11', '', true, '$ 4.000,01', '#007777'],
+        ];
+
+        test = jspreadsheet(document.getElementById('spreadsheet'), {
+            data:data,
+            columns: [
+                {
+                    type: 'text',
+                    title:'Car',
+                    width:90
+                },
+                {
+                    type: 'dropdown',
+                    title:'Make',
+                    width:120,
+                    source:[
+                        "Alfa Romeo",
+                        "Audi",
+                        "Bmw",
+                        "Chevrolet",
+                        "Chrystler",
+                        "Dodge",
+                        "Ferrari",
+                        "Fiat",
+                        "Ford",
+                        "Honda",
+                        "Hyundai",
+                        "Jaguar",
+                        "Jeep",
+                        "Kia",
+                        "Mazda",
+                        "Mercedez-Benz",
+                        "Mitsubish",
+                        "Nissan",
+                        "Peugeot",
+                        "Porsche",
+                        "Subaru",
+                        "Suzuki",
+                        "Toyota",
+                        "Volkswagen"
+                    ]
+                },
+                {
+                    type: 'calendar',
+                    title:'Available',
+                    width:120
+                },
+                {
+                    type: 'image',
+                    title:'Photo',
+                    width:120
+                },
+                {
+                    type: 'checkbox',
+                    title:'Stock',
+                    width:80
+                },
+                {
+                    type: 'numeric',
+                    title:'Price',
+                    mask:'$ #.##,00',
+                    width:80,
+                    decimal:','
+                },
+                {
+                    type: 'color',
+                    width:80,
+                    render:'square',
+                },
+            ]
+        });
+    });
+</script>

@@ -1,0 +1,132 @@
+<div class="section">
+<div class="section-content">
+
+<div class='breadcrumb'><a href='/jspreadsheet/v4/examples' title='Back to the examples section'>Back to Examples</a></div>
+
+<h1>Jspreadsheet internationalization</h1>
+
+<p>How to update the default texts from the online spreadsheet.</p>
+
+<div id="spreadsheet"></div>
+
+<script>
+var data = [
+    ['Mazda', 2001, 2000, '2006-01-01'],
+    ['Pegeout', 2010, 5000, '2005-01-01'],
+    ['Honda Fit', 2009, 3000, '2004-01-01'],
+    ['Honda CRV', 2010, 6000, '2003-01-01'],
+];
+
+document.addEventListener('DOMContentLoaded', function() {
+    jspreadsheet(document.getElementById('spreadsheet'), {
+        data:data,
+        columns:[
+            { type:'text', width:300 },
+            { type:'text', width:100 },
+            { type:'text', width:100 },
+            { type:'calendar', width:100 },
+        ],
+        text:{
+            noRecordsFound:'Nenhum registro encontrado',
+            showingPage:'Mostrando página {0} de {1} entradas',
+            show:'Show',
+            entries:'entradas',
+            insertANewColumnBefore:'Inserir uma nova coluna antes de',
+            insertANewColumnAfter:'Inserir uma nova coluna depois de',
+            deleteSelectedColumns:'Excluir colunas selecionadas',
+            renameThisColumn:'Renomear esta coluna',
+            orderAscending:'ordem ascendente',
+            orderDescending:'Order decrescente',
+            insertANewRowBefore:'Inserir uma nova linha antes de',
+            insertANewRowAfter:'Inserir uma nova linha depois de',
+            deleteSelectedRows:'Excluir linhas selecionadas',
+            editComments:'Editar comentários',
+            addComments:'Adicionar comentários',
+            comments:'Comentários',
+            clearComments:'Limpar comentários',
+            copy:'Copiar ...',
+            paste:'Colar ...',
+            saveAs:'Salvar como ...',
+            about:'About',
+            areYouSureToDeleteTheSelectedRows:'Tem certeza de excluir as linhas selecionadas?',
+            areYouSureToDeleteTheSelectedColumns:'Tem certeza de excluir as colunas selecionadas?',
+            thisActionWillDestroyAnyExistingMergedCellsAreYouSure:'Esta ação irá destruir todas as células mescladas existentes. Você tem certeza?',
+            thisActionWillClearYourSearchResultsAreYouSure:'Esta ação limpará seus resultados de pesquisa. Você tem certeza?',
+            thereIsAConflictWithAnotherMergedCell:'Há um conflito com outra célula mesclada',
+            invalidMergeProperties:'Propriedades mescladas inválidas',
+            cellAlreadyMerged:'Cell já mesclado',
+            noCellsSelected:'Nenhuma célula selecionada',
+            about:'Sobre',
+        }
+    });
+});
+</script>
+
+<br><br>
+
+<h3>Source code</h3>
+
+<pre class="prettyprint linenums">
+&#60;html>
+&#60;script src="https://bossanova.uk/jspreadsheet/v4/jexcel.js">&#60;/script>
+&#60;script src="https://jsuites.net/v4/jsuites.js">&#60;/script>
+&#60;link rel="stylesheet" href="https://bossanova.uk/jspreadsheet/v4/jexcel.css" type="text/css" />
+&#60;link rel="stylesheet" href="https://jsuites.net/v4/jsuites.css" type="text/css" />
+
+&#60;div id="spreadsheet">&#60;/div>
+
+&#60;script>
+var data = [
+    ['Mazda', 2001, 2000, '2006-01-01'],
+    ['Pegeout', 2010, 5000, '2005-01-01'],
+    ['Honda Fit', 2009, 3000, '2004-01-01'],
+    ['Honda CRV', 2010, 6000, '2003-01-01'],
+];
+
+jspreadsheet(document.getElementById('spreadsheet'), {
+    data:data,
+    columns:[
+        { type:'text', width:300 },
+        { type:'text', width:100 },
+        { type:'text', width:100 },
+        { type:'calendar', width:100 },
+    ],
+    text:{
+        noRecordsFound:'Nenhum registro encontrado',
+        showingPage:'Mostrando página {0} de {1} entradas',
+        show:'Show',
+        entries:'entradas',
+        insertANewColumnBefore:'Inserir uma nova coluna antes de',
+        insertANewColumnAfter:'Inserir uma nova coluna depois de',
+        deleteSelectedColumns:'Excluir colunas selecionadas',
+        renameThisColumn:'Renomear esta coluna',
+        orderAscending:'ordem ascendente',
+        orderDescending:'Order decrescente',
+        insertANewRowBefore:'Inserir uma nova linha antes de',
+        insertANewRowAfter:'Inserir uma nova linha depois de',
+        deleteSelectedRows:'Excluir linhas selecionadas',
+        editComments:'Editar comentários',
+        addComments:'Adicionar comentários',
+        comments:'Comentários',
+        clearComments:'Limpar comentários',
+        copy:'Copiar ...',
+        paste:'Colar ...',
+        saveAs:'Salvar como ...',
+        about:​'About',
+        areYouSureToDeleteTheSelectedRows:'Tem certeza de excluir as linhas selecionadas?',
+        areYouSureToDeleteTheSelectedColumns:'Tem certeza de excluir as colunas selecionadas?',
+        thisActionWillDestroyAnyExistingMergedCellsAreYouSure:'Esta ação irá destruir todas as células mescladas existentes. Você tem certeza?',
+        thisActionWillClearYourSearchResultsAreYouSure:'Esta ação limpará seus resultados de pesquisa. Você tem certeza?',
+        thereIsAConflictWithAnotherMergedCell:'Há um conflito com outra célula mesclada',
+        invalidMergeProperties:'Propriedades mescladas inválidas',
+        cellAlreadyMerged:'Cell já mesclado',
+        noCellsSelected:'Nenhuma célula selecionada',
+    }
+});
+&#60;/script>
+&#60;/html>
+</pre>
+
+
+</div>
+</div>
